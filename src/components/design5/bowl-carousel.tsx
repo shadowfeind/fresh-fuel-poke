@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 
 type Bowl = {
   name: string;
@@ -61,10 +61,14 @@ const bowls: Bowl[] = [
     tags: ["Brain Food", "Omega-3"],
   },
 ];
+const loopedBowls = [...bowls, ...bowls, ...bowls];
 
 export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const sampleCardRef = useRef<HTMLElement>(null);
+  const [activeIndex, setActiveIndex] = useState(bowls.length);
+  const [stepSize, setStepSize] = useState(512);
+  const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
 
   const eyebrowClass = tone === "dark" ? "text-white/48" : "text-stone-500";
   const headingClass = tone === "dark" ? "text-white" : "text-stone-900";
@@ -84,31 +88,75 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
   const progressFillClass =
     tone === "dark" ? "bg-[var(--lime)]" : "bg-stone-900";
 
-  const scrollTo = (direction: "prev" | "next") => {
-    const container = scrollRef.current;
-    if (!container) return;
+  useEffect(() => {
+    const measure = () => {
+      const card = sampleCardRef.current;
+      const track = trackRef.current;
+      if (!card || !track) return;
 
-    const cardWidth = container.children[0]?.clientWidth ?? 0;
-    const gap = 32;
-    const scrollAmount = cardWidth + gap;
+      const computedStyles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(computedStyles.gap || "32");
+      setStepSize(card.offsetWidth + gap);
+    };
 
-    if (direction === "next") {
-      const maxIndex = bowls.length - 1;
-      const newIndex = Math.min(activeIndex + 1, maxIndex);
-      setActiveIndex(newIndex);
-      container.scrollTo({
-        left: newIndex * scrollAmount,
-        behavior: "smooth",
-      });
-    } else {
-      const newIndex = Math.max(activeIndex - 1, 0);
-      setActiveIndex(newIndex);
-      container.scrollTo({
-        left: newIndex * scrollAmount,
-        behavior: "smooth",
-      });
+    measure();
+    window.addEventListener("resize", measure);
+
+    return () => {
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isTransitionEnabled) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      setIsTransitionEnabled(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [isTransitionEnabled]);
+
+  const goTo = (direction: "prev" | "next") => {
+    setActiveIndex((currentIndex) =>
+      direction === "next" ? currentIndex + 1 : currentIndex - 1,
+    );
+  };
+
+  const autoplay = useEffectEvent(() => {
+    goTo("next");
+  });
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      autoplay();
+    }, 4500);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [autoplay]);
+
+  const handleTransitionEnd = () => {
+    const firstLoopIndex = bowls.length;
+    const lastLoopIndex = bowls.length * 2 - 1;
+
+    if (activeIndex > lastLoopIndex) {
+      setIsTransitionEnabled(false);
+      setActiveIndex(firstLoopIndex);
+      return;
+    }
+
+    if (activeIndex < firstLoopIndex) {
+      setIsTransitionEnabled(false);
+      setActiveIndex(lastLoopIndex);
     }
   };
+
+  const displayIndex =
+    ((activeIndex % bowls.length) + bowls.length) % bowls.length;
 
   return (
     <div>
@@ -123,18 +171,17 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
           <h2
             className={`font-serif text-4xl leading-[0.95] md:text-6xl lg:text-7xl ${headingClass}`}
           >
-            The
+            Our Signature
             <br />
-            Collection
+            Dishes
           </h2>
         </div>
 
         <div className="flex gap-3">
           <button
             type="button"
-            onClick={() => scrollTo("prev")}
-            disabled={activeIndex === 0}
-            className={`flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-30 ${controlClass}`}
+            onClick={() => goTo("prev")}
+            className={`flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300 ${controlClass}`}
             aria-label="Previous bowl"
           >
             <svg
@@ -150,9 +197,8 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
           </button>
           <button
             type="button"
-            onClick={() => scrollTo("next")}
-            disabled={activeIndex === bowls.length - 1}
-            className={`flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-30 ${controlClass}`}
+            onClick={() => goTo("next")}
+            className={`flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300 ${controlClass}`}
             aria-label="Next bowl"
           >
             <svg
@@ -170,65 +216,78 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
       </div>
 
       {/* Carousel */}
-      <div
-        ref={scrollRef}
-        className="flex gap-8 overflow-x-auto pb-8 px-8 md:px-16 lg:px-24 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {bowls.map((bowl, index) => (
-          <article
-            key={bowl.name}
-            className="group flex-shrink-0 w-[85vw] sm:w-[420px] lg:w-[480px] snap-start"
-          >
-            {/* Bowl image */}
-            <div
-              className={`relative mb-8 aspect-square overflow-hidden rounded-sm ${imageClass}`}
+      <div className="overflow-hidden px-8 pb-8 md:px-16 lg:px-24">
+        <div
+          ref={trackRef}
+          className={`flex gap-8 ${
+            isTransitionEnabled
+              ? "transition-transform duration-500 ease-out"
+              : ""
+          }`}
+          style={{
+            transform: `translate3d(-${activeIndex * stepSize}px, 0, 0)`,
+          }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {loopedBowls.map((bowl, index) => (
+            <article
+              key={`${bowl.name}-${index}`}
+              ref={index === 0 ? sampleCardRef : null}
+              className="group w-[85vw] shrink-0 sm:w-[420px] lg:w-[480px]"
             >
-              <Image
-                src={bowl.image}
-                alt={bowl.name}
-                fill
-                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 420px, 480px"
-                className="object-contain p-8 transition-transform duration-700 group-hover:scale-105"
-              />
-              {/* Number overlay */}
-              <span
-                className={`absolute left-6 top-6 font-mono text-sm tracking-widest ${priceClass}`}
+              {/* Bowl image */}
+              <div
+                className={`relative mb-8 aspect-square overflow-hidden rounded-sm ${imageClass}`}
               >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-            </div>
-
-            {/* Tags */}
-            <div className="flex gap-2 mb-4 flex-wrap">
-              {bowl.tags.map((tag) => (
+                <Image
+                  src={bowl.image}
+                  alt={bowl.name}
+                  fill
+                  sizes="(max-width: 640px) 85vw, (max-width: 1024px) 420px, 480px"
+                  className="object-contain p-8 transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Number overlay */}
                 <span
-                  key={tag}
-                  className={`border px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] ${tagClass}`}
+                  className={`absolute left-6 top-6 font-mono text-sm tracking-widest ${priceClass}`}
                 >
-                  {tag}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
-              ))}
-            </div>
+              </div>
 
-            {/* Details */}
-            <div className="flex justify-between items-baseline mb-4">
-              <h3 className={`font-serif text-2xl md:text-3xl ${headingClass}`}>
-                {bowl.name}
-              </h3>
-              <span
-                className={`font-mono text-sm tracking-widest ${priceClass}`}
+              {/* Tags */}
+              <div className="flex gap-2 mb-4 flex-wrap">
+                {bowl.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={`border px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] ${tagClass}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Details */}
+              <div className="flex justify-between items-baseline mb-4">
+                <h3
+                  className={`font-serif text-2xl md:text-3xl ${headingClass}`}
+                >
+                  {bowl.name}
+                </h3>
+                <span
+                  className={`font-mono text-sm tracking-widest ${priceClass}`}
+                >
+                  {bowl.price}
+                </span>
+              </div>
+
+              <p
+                className={`max-w-md text-sm leading-relaxed md:text-base ${descriptionClass}`}
               >
-                {bowl.price}
-              </span>
-            </div>
-
-            <p
-              className={`max-w-md text-sm leading-relaxed md:text-base ${descriptionClass}`}
-            >
-              {bowl.description}
-            </p>
-          </article>
-        ))}
+                {bowl.description}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
 
       {/* Progress bar */}
@@ -236,14 +295,14 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
         <div className={`relative h-px ${progressTrackClass}`}>
           <div
             className={`absolute left-0 top-0 h-px transition-all duration-500 ${progressFillClass}`}
-            style={{ width: `${((activeIndex + 1) / bowls.length) * 100}%` }}
+            style={{ width: `${((displayIndex + 1) / bowls.length) * 100}%` }}
           />
         </div>
         <div className="flex justify-between mt-3">
           <span
             className={`font-mono text-[10px] tracking-widest ${priceClass}`}
           >
-            {String(activeIndex + 1).padStart(2, "0")}
+            {String(displayIndex + 1).padStart(2, "0")}
           </span>
           <span
             className={`font-mono text-[10px] tracking-widest ${priceClass}`}

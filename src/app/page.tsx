@@ -207,19 +207,18 @@ export default function Home() {
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-(--brand-red)">
               Our Story
             </p>
-            <h2 className="mt-4 max-w-xl font-(family-name:--font-display) text-4xl leading-tight tracking-[-0.03em] text-stone-900 sm:text-5xl">
+            <h2 className="mt-4 max-w-xl text-4xl font-black leading-tight tracking-[-0.04em] text-stone-900 sm:text-5xl">
               Healthy should still feel generous, fresh, and craveable.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-stone-700 sm:text-lg">
-              Fresh Fuel Poke was born from the idea that everyday meals can be
-              visually joyful and performance minded at the same time. The
-              concept in your reference is carried through here with curved
-              forms, bright bowls, and a calm premium rhythm.
+              Fresh Fuel Poke serves bright, satisfying bowls built with fresh
+              proteins, crisp vegetables, and house-made sauces that keep every
+              bite balanced and full of flavor.
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-stone-700 sm:text-lg">
-              The result is a one-page landing experience for walk-ins,
-              delivery, and catering inquiries without sending visitors away
-              from the page.
+              Whether you are stopping in for lunch, ordering dinner, or feeding
+              a group, the menu is built to feel clean, filling, and easy to
+              come back to.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <div className="rounded-[28px] bg-white px-5 py-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
@@ -258,12 +257,13 @@ export default function Home() {
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-(--brand-red)">
                 Signature Menu
               </p>
-              <h2 className="mt-4 font-(family-name:--font-display) text-4xl leading-tight tracking-[-0.03em] text-stone-950 sm:text-5xl">
-                A carousel of bowls designed to keep the page moving.
+              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-stone-950 sm:text-5xl">
+                The bowls our guests come back for.
               </h2>
               <p className="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-                This menu section stays on the landing page. It behaves like a
-                showcase rather than a navigation hub, which fits your request.
+                From lighter salmon bowls to fuller post-workout favorites,
+                every signature dish is built fresh to order and easy to enjoy
+                any time of day.
               </p>
             </div>
             <div className="flex gap-3">
@@ -293,14 +293,14 @@ export default function Home() {
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--brand-red)]">
               Ingredients
             </p>
-            <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl leading-tight tracking-[-0.03em] text-stone-950 sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-stone-950 sm:text-5xl">
               Ingredients people recognize, layered with sauces that keep things
               lively.
             </h2>
             <p className="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-              The visual system leans into colorful produce, premium proteins,
-              and sauces with personality, matching the clean-but-vibrant feel
-              in the approved mockup.
+              We keep the ingredient list simple: quality proteins, fresh
+              produce, and bold sauces that add brightness without covering up
+              the bowl underneath.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               {[

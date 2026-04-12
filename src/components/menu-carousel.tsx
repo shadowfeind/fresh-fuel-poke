@@ -78,7 +78,7 @@ export function MenuCarousel({ bowls }: { bowls: Bowl[] }) {
               />
             </div>
             <div className="mt-6 text-center">
-              <h3 className="font-(family-name:--font-display) text-3xl tracking-[-0.03em] text-stone-950">
+              <h3 className="text-3xl font-black tracking-[-0.04em] text-stone-950">
                 {bowl.name}
               </h3>
               <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-stone-700">

@@ -8,8 +8,7 @@
   --butter: #efe46a;
   --peach: #f8c7a3;
   --paper: #fffdf7;
-  --font-display:
-    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-display: var(--font-allura), "Snell Roundhand", cursive;
   --font-body: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
 }
 
@@ -17,6 +16,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
 }
 
 html {
