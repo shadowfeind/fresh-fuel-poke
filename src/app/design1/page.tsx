@@ -145,13 +145,13 @@ export default function Design2Page() {
 
       <section className="px-8 py-16 md:px-16 md:py-20 lg:px-24 lg:py-24">
         <Reveal delay={80}>
-          <div className="mx-auto max-w-[1500px] rounded-[44px] border border-stone-200 bg-white px-6 py-8 text-[#121212] shadow-[0_28px_80px_rgba(15,23,42,0.08)] md:px-10 md:py-12">
+          <div className="mx-auto max-w-[1500px] bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-[44px] lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
             <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
-              <div className="max-w-xl lg:pb-10">
+              <div className="max-w-xl py-2 md:px-0 md:py-0 lg:pb-10">
                 <p className="text-[10px] uppercase tracking-[0.32em] text-(--lime) md:text-xs">
                   Fresh Fuel Poke
                 </p>
-                <h2 className="mt-4 font-(family-name:--font-display) text-5xl italic leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
+                <h2 className="mt-4 font-serif text-5xl italic leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
                   Our Story
                 </h2>
                 <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
@@ -168,52 +168,7 @@ export default function Design2Page() {
                 </p>
               </div>
 
-              <div className="rounded-[38px] border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6">
-                <div className="mb-6 inline-flex rounded-full border border-stone-200 bg-white/80 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-stone-500 backdrop-blur-sm lg:absolute lg:left-6 lg:top-6">
-                  Our favorites
-                </div>
-
-                <div className="space-y-4 lg:hidden">
-                  {floatingHighlights.map((item) => (
-                    <article
-                      key={item.title}
-                      className="rounded-[30px] border border-stone-200 bg-white p-4 text-[#121212] shadow-[0_20px_50px_rgba(15,23,42,0.1)]"
-                    >
-                      <div
-                        className={`relative overflow-hidden rounded-[24px] bg-[#f5f4ef] ${
-                          item.size === "large"
-                            ? "aspect-square"
-                            : "aspect-[4/5]"
-                        }`}
-                      >
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="100vw"
-                          className="object-contain p-5"
-                        />
-                      </div>
-                      <div className="mt-4 flex items-center justify-between gap-4">
-                        <div>
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-400">
-                            {item.accent}
-                          </p>
-                          <h3 className="mt-2 font-(family-name:--font-display) text-2xl text-stone-950">
-                            {item.title}
-                          </h3>
-                        </div>
-                        <span className="text-[10px] uppercase tracking-[0.25em] text-(--brand-red)">
-                          Fresh Fuel
-                        </span>
-                      </div>
-                      <p className="mt-3 text-sm leading-7 tracking-[0.06em] text-stone-500">
-                        {item.note}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-
+              <div className="hidden rounded-[38px] border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6 lg:block">
                 <div className="relative hidden min-h-[720px] overflow-hidden lg:block">
                   <div className="pointer-events-none absolute inset-x-0 top-8 text-center text-[5rem] font-black uppercase leading-none tracking-[0.32em] text-stone-900/4 lg:text-[6.5rem]">
                     Fresh Fuel
@@ -234,9 +189,7 @@ export default function Design2Page() {
                     >
                       <div
                         className={`relative overflow-hidden rounded-[28px] bg-[#f5f4ef] ${
-                          item.size === "large"
-                            ? "aspect-square"
-                            : "aspect-[4/5]"
+                          item.size === "large" ? "aspect-square" : "aspect-4/5"
                         }`}
                       >
                         <Image
@@ -252,7 +205,7 @@ export default function Design2Page() {
                           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-400">
                             {item.accent}
                           </p>
-                          <h3 className="mt-2 font-(family-name:--font-display) text-2xl text-stone-950">
+                          <h3 className="mt-2 font-serif text-2xl text-stone-950">
                             {item.title}
                           </h3>
                         </div>
@@ -273,18 +226,17 @@ export default function Design2Page() {
       </section>
 
       <section className="pb-16 lg:pb-24">
-        <div className="mx-auto max-w-[1500px] px-8 md:px-16 lg:px-24">
+        <div className="mx-auto hidden max-w-[1500px] px-8 md:block md:px-16 lg:px-24">
           <Reveal delay={80}>
             <p className="text-[10px] uppercase tracking-[0.32em] text-(--brand-red) md:text-xs">
-              Continuous Motion
+              Fresh Fuel Poke
             </p>
-            <h2 className="mt-4 font-(family-name:--font-display) text-5xl italic leading-[0.95] tracking-[-0.03em] text-stone-950 md:text-7xl">
+            <h2 className="mt-4 font-serif text-5xl italic leading-[0.95] tracking-[-0.03em] text-stone-950 md:text-7xl">
               Fresh bowls, bright flavors, and kitchen energy in motion.
             </h2>
             <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-500 md:text-base">
-              This brings back the side-to-side movement you liked, using only
-              the real bowl and kitchen assets so the section feels active
-              without turning into filler.
+              A moving glimpse of our bowls, fresh prep, and everyday kitchen
+              rhythm that keeps the page feeling lively and food-first.
             </p>
           </Reveal>
         </div>

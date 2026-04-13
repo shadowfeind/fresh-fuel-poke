@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { HeroSlider } from "../components/hero-slider";
 import { MenuCarousel } from "../components/menu-carousel";
+import { RootMobileMenu } from "../components/root-mobile-menu";
 
 const navigationItems = [
   "Home",
@@ -117,7 +118,7 @@ export default function Home() {
       <header className="relative z-30 border-b border-stone-200/80 bg-(--paper) shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
         <div className="mx-auto  px-5 py-4 sm:px-8 lg:px-10">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-            <div className="flex items-center justify-between gap-6">
+            <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <Image
                   src="/photos/logo.png"
@@ -128,12 +129,7 @@ export default function Home() {
                   className="h-auto w-28 sm:w-36"
                 />
               </div>
-              <button
-                type="button"
-                className="rounded-full bg-(--brand-red) px-5 py-3 text-xs font-bold uppercase tracking-[0.24em] text-white xl:hidden"
-              >
-                Order Today
-              </button>
+              <RootMobileMenu items={navigationItems} />
             </div>
 
             <div className="flex flex-col gap-3 xl:items-end">
@@ -153,18 +149,6 @@ export default function Home() {
                 >
                   Order Today
                 </button>
-              </div>
-
-              <div className="flex flex-wrap gap-2 lg:hidden">
-                {navigationItems.map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    className="rounded-full border border-stone-300 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-700"
-                  >
-                    {item}
-                  </button>
-                ))}
               </div>
             </div>
           </div>
@@ -387,8 +371,8 @@ export default function Home() {
       </section>
 
       <footer className="bg-[var(--lime)] px-5 py-10 text-white sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3 md:items-end">
-          <div className="flex flex-col items-start gap-4 md:justify-self-start">
+        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3 md:items-end">
+          <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left md:justify-self-start">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/95">
               Follow Us
             </p>
@@ -424,11 +408,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-start gap-4 md:items-end md:justify-self-end">
+          <div className="flex flex-col items-center gap-4 text-center md:items-end md:text-right md:justify-self-end">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/95">
               Delivery Service By
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4 md:justify-end">
               <Image
                 src="/photos/food%20panda.webp"
                 alt="foodpanda"

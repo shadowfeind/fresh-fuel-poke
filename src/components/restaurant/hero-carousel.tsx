@@ -84,7 +84,7 @@ export function HeroCarousel({
               {line}
             </span>
           ))}
-          <span className="block font-(family-name:--font-display) text-5xl italic font-light leading-[0.92] tracking-[-0.04em] text-white/78 md:text-7xl lg:text-[7rem]">
+          <span className="block font-serif text-5xl italic font-light leading-[0.92] tracking-[-0.04em] text-white/78 md:text-7xl lg:text-[7rem]">
             {accent}
           </span>
         </h1>
