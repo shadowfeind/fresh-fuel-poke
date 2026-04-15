@@ -1,437 +1,564 @@
 import Image from "next/image";
-import { HeroSlider } from "../components/hero-slider";
-import { MenuCarousel } from "../components/menu-carousel";
-import { RootMobileMenu } from "../components/root-mobile-menu";
+import { BowlCarousel } from "@/components/design5/bowl-carousel";
+import { IngredientStrip } from "@/components/design5/ingredient-strip";
+import { TestimonialCarousel } from "@/components/design5/testimonial-carousel";
+import { ActionButtons } from "@/components/restaurant/common";
+import { restaurantInfo } from "@/components/restaurant/content";
+import { HeroCarousel } from "@/components/restaurant/hero-carousel";
+import { ImageMarquee } from "@/components/restaurant/image-marquee";
+import { Reveal } from "@/components/restaurant/reveal";
+import { SiteHeader } from "@/components/restaurant/site-header";
 
-const navigationItems = [
-  "Home",
-  "About Us",
-  "Menus",
-  "Bowls & Delivery",
-  "Catering Service",
-  "Contact Us",
+const floatingHighlights = [
+  {
+    title: "Meal Set",
+    image: "/photos/Meal%20Set.png",
+    note: "Fast, photogenic, and easy to share.",
+    accent: "Set",
+    size: "small",
+  },
+  {
+    title: "Bliss",
+    image: "/photos/Bliss.png",
+    note: "The bowl that anchors the whole visual identity.",
+    accent: "Signature",
+    size: "large",
+  },
+  {
+    title: "Low Calorie",
+    image: "/photos/Low%20Calories.png",
+    note: "Lighter profile, still bright enough to stand out.",
+    accent: "Favorite",
+    size: "medium",
+  },
+] as const;
+
+const menuCategories = [
+  {
+    title: "Starters",
+    note: "Small plates to open.",
+    items: [
+      { name: "Kimchi Slaw", price: "8" },
+      { name: "Ginger Cucumber Cup", price: "7" },
+      { name: "Seaweed Salad", price: "9" },
+    ],
+  },
+  {
+    title: "Signature Bowls",
+    note: "House bowls built for balance.",
+    items: [
+      { name: "Bliss", price: "24" },
+      { name: "Low Calorie", price: "22" },
+      { name: "Cardio Crunch", price: "23" },
+      { name: "Fuel Up Energy", price: "26" },
+      { name: "Gut Guardian", price: "25" },
+      { name: "Neuro Fuel", price: "27" },
+    ],
+  },
+  {
+    title: "Drinks",
+    note: "Fresh mixes and house blends.",
+    items: [
+      { name: "Honey Lime", price: "6" },
+      { name: "Apple & Pineapple Mix", price: "7" },
+      { name: "Turmeric Coco", price: "7" },
+    ],
+  },
+] as const;
+
+const hours = [
+  { label: "Mon — Thu", value: "11:00 — 21:30" },
+  { label: "Friday", value: "11:00 — 22:30" },
+  { label: "Saturday", value: "10:30 — 22:30" },
+  { label: "Sunday", value: "10:30 — 21:00" },
+] as const;
+
+const marqueeRows = [
+  [
+    {
+      src: "/photos/Banner2.jpg",
+      alt: "Fresh Fuel Poke preparation scene",
+    },
+    {
+      src: "/photos/Bliss.png",
+      alt: "Bliss bowl",
+    },
+    {
+      src: "/photos/Meal%20Set.png",
+      alt: "Fresh Fuel Poke meal set",
+    },
+    {
+      src: "/photos/Banner3.jpg",
+      alt: "Fresh ingredients being prepared",
+    },
+  ],
+  [
+    {
+      src: "/photos/Low%20Calories.png",
+      alt: "Low Calorie bowl",
+    },
+    {
+      src: "/photos/Banner1.jpg",
+      alt: "Fresh Fuel Poke restaurant spread",
+    },
+    {
+      src: "/photos/Fuel%20Up%20Energy.png",
+      alt: "Fuel Up Energy bowl",
+    },
+    {
+      src: "/photos/Cardio%20Crunch.png",
+      alt: "Cardio Crunch bowl",
+    },
+  ],
 ];
 
 const heroSlides = [
   {
-    image: "/photos/Banner1.jpg",
-    alt: "Fresh Fuel Poke signature bowl spread",
+    src: "/photos/Banner1.jpg",
+    alt: "Fresh Fuel Poke restaurant spread",
+    label: "Signature Dishes",
   },
   {
-    image: "/photos/Banner2.jpg",
-    alt: "Close-up of salmon poke ingredients",
+    src: "/photos/Banner2.jpg",
+    alt: "Fresh Fuel Poke preparation scene",
+    label: "Fresh energy",
   },
   {
-    image: "/photos/Banner3.jpg",
-    alt: "Prepared ingredients for poke bowls",
+    src: "/photos/Banner3.jpg",
+    alt: "Fresh ingredients being prepared",
+    label: "Fresh prep",
   },
-];
+] as const;
 
-const bowlItems = [
-  {
-    name: "Bliss",
-    image: "/photos/Bliss.png",
-    accent: "Best Seller",
-    calories: "Balanced Fuel",
-    protein: "Protein Forward",
-    description:
-      "A colorful salmon bowl with avocado, edamame, greens, and a clean finish.",
-  },
-  {
-    name: "Low Calories",
-    image: "/photos/Low%20Calories.png",
-    accent: "Light Favorite",
-    calories: "Low Calorie",
-    protein: "Clean Finish",
-    description:
-      "Built for lighter cravings with bright crunch, lean toppings, and a refreshing bite.",
-  },
-  {
-    name: "Cardio Crunch",
-    image: "/photos/Cardio%20Crunch.png",
-    accent: "Crunchy & Fresh",
-    calories: "Midday Energy",
-    protein: "Texture Rich",
-    description:
-      "A lively bowl with crisp vegetables, layered crunch, and bold dressing notes.",
-  },
-  {
-    name: "Fuel Up Energy",
-    image: "/photos/Fuel%20Up%20Energy.png",
-    accent: "Power Bowl",
-    calories: "High Energy",
-    protein: "Recovery Ready",
-    description:
-      "A fuller bowl for post-work fuel with vibrant toppings and satisfying depth.",
-  },
-];
-
-const ingredientItems = [
-  { name: "Salmon Fillet", image: "/photos/Salmon%20Fillet.png" },
-  { name: "Chicken Breast", image: "/photos/Chicken%20Breast.png" },
-  { name: "Tofu", image: "/photos/Tofu.png" },
-  { name: "Avocado", image: "/photos/Avacado.png" },
-  { name: "Kimchi", image: "/photos/Kimchi.png" },
-  { name: "Ginger Miso", image: "/photos/Giner%20Miso.png" },
-  { name: "Honey Lime", image: "/photos/Honey%20Lime.png" },
-  { name: "Ponzu Tajin", image: "/photos/Ponzu%20Tajin.png" },
-];
-
-const featuredBowls = [
-  {
-    name: "Bliss",
-    image: "/photos/Bliss.png",
-    benefits: ["Inflammation Control", "Metabolic Support", "Muscle Recovery"],
-    ingredients: [
-      "Quinoa",
-      "Chicken",
-      "Spinach",
-      "Kale",
-      "Edamame",
-      "Carrot",
-      "Cucumber",
-      "Pineapple",
-      "Avocado",
-      "Sesame Seed",
-      "Ginger",
-      "Seaweed",
-    ],
-  },
-  {
-    name: "Low Calorie",
-    image: "/photos/Low%20Calories.png",
-    benefits: ["Big Portion", "Low Calories", "Satiety", "Metabolism Booster"],
-    ingredients: [
-      "Spinach",
-      "Salmon",
-      "Purple Cabbage",
-      "Ginger",
-      "Sesame Oil",
-      "Sesame Seed",
-    ],
-  },
-];
-
-export default function Home() {
+export default function Design2Page() {
   return (
-    <main className="overflow-hidden bg-background text-foreground">
-      <header className="relative z-30 border-b border-stone-200/80 bg-(--paper) shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
-        <div className="mx-auto  px-5 py-4 sm:px-8 lg:px-10">
-          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <Image
-                  src="/photos/logo.png"
-                  alt="Fresh Fuel Poke logo"
-                  width={160}
-                  height={77}
-                  preload
-                  className="h-auto w-28 sm:w-36"
-                />
-              </div>
-              <RootMobileMenu items={navigationItems} />
-            </div>
+    <main className="bg-white text-[#121212]">
+      <SiteHeader menuCategories={menuCategories} />
 
-            <div className="flex flex-col gap-3 xl:items-end">
-              <div className="hidden items-center gap-2 lg:flex">
-                {navigationItems.map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    className="rounded-full p-4 text-sm font-semibold text-stone-800 transition hover:border-stone-900 hover:bg-stone-50"
-                  >
-                    {item}
-                  </button>
-                ))}
-                <button
-                  type="button"
-                  className="ml-2 rounded-full bg-(--brand-red) px-5 py-3 text-xs font-bold uppercase tracking-[0.24em] text-white transition hover:translate-y-[-2px]"
-                >
-                  Order Today
-                </button>
+      <HeroCarousel
+        slides={heroSlides}
+        eyebrow="Bold & Trendy"
+        title={["Bowls", "Built"]}
+        accent="for the feed."
+        description="Freshly prepared poke bowls, vibrant toppings, and feel-good meals made for lunch runs, dinner cravings, and easy group orders."
+      />
+
+      <section className="px-8 py-16 md:px-16 md:py-20 lg:px-24 lg:py-24">
+        <Reveal delay={80}>
+          <div className="mx-auto max-w-[1500px] bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-[44px] lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
+            <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
+              <div className="max-w-xl py-2 md:px-0 md:py-0 lg:pb-10">
+                <p className="text-[10px] uppercase tracking-[0.32em] text-(--lime) md:text-xs">
+                  Fresh Fuel Poke
+                </p>
+                <h2 className="mt-4 font-serif text-5xl italic leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
+                  Our Story
+                </h2>
+                <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
+                  Fresh Fuel Poke was born from a simple idea that fast food
+                  does not have to be junk food.We saw a world of people on the
+                  go, striving to be their best but lacking access to meals that
+                  were both convenient and genuinely nourishing.We bridge that
+                  gap. We bring the vibrant, fresh fla-vour of the Pacific to
+                  the heart of the city, offering a fuel stop for modern life.
+                  We aim to be the world's leading fresh, fast cau-sual brand by
+                  making vibrant, nutrient dense faad thp most accessible,
+                  appealing, delicious and exciting choice to fuel modern,
+                  active life-styles.
+                </p>
+              </div>
+
+              <div className="hidden rounded-[38px] border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6 lg:block">
+                <div className="relative hidden min-h-[720px] overflow-hidden lg:block">
+                  <div className="pointer-events-none absolute inset-x-0 top-8 text-center text-[5rem] font-black uppercase leading-none tracking-[0.32em] text-stone-900/4 lg:text-[6.5rem]">
+                    Fresh Fuel
+                  </div>
+                  <div className="pulse-halo absolute left-[6%] top-[8%] h-44 w-44 rounded-full bg-(--brand-red)/20 blur-3xl" />
+                  <div className="pulse-halo absolute bottom-[12%] right-[8%] h-52 w-52 rounded-full bg-(--lime)/18 blur-3xl" />
+
+                  {floatingHighlights.map((item, index) => (
+                    <article
+                      key={item.title}
+                      className={`absolute rounded-[34px] border border-stone-200 bg-white p-4 text-[#121212] shadow-[0_30px_70px_rgba(15,23,42,0.12)] transition duration-500 hover:-translate-y-2 ${
+                        index === 0
+                          ? "floating-soft left-[3%] top-[12%] w-[34%] max-w-[250px] rotate-[-5deg]"
+                          : index === 1
+                            ? "floating-medium left-1/2 top-[16%] z-10 w-[44%] max-w-[360px] -translate-x-1/2"
+                            : "floating-slow right-[3%] bottom-[8%] w-[35%] max-w-[260px] rotate-[5deg]"
+                      }`}
+                    >
+                      <div
+                        className={`relative overflow-hidden rounded-[28px] bg-[#f5f4ef] ${
+                          item.size === "large" ? "aspect-square" : "aspect-4/5"
+                        }`}
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 28vw"
+                          className="object-contain p-5 transition duration-500 hover:scale-105"
+                        />
+                      </div>
+                      <div className="mt-4 flex items-center justify-between gap-4">
+                        <div>
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-400">
+                            {item.accent}
+                          </p>
+                          <h3 className="mt-2 font-serif text-2xl text-stone-950">
+                            {item.title}
+                          </h3>
+                        </div>
+                        <span className="text-[10px] uppercase tracking-[0.25em] text-(--brand-red)">
+                          Fresh Fuel
+                        </span>
+                      </div>
+                      <p className="mt-3 text-sm leading-7 tracking-[0.06em] text-stone-500">
+                        {item.note}
+                      </p>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
-
-      <section className="relative isolate min-h-[90svh] overflow-hidden bg-stone-950 text-white">
-        <HeroSlider slides={heroSlides} />
+        </Reveal>
       </section>
 
-      <section className="relative overflow-hidden px-5 py-24 sm:px-8 lg:px-10">
-        <div className="absolute -right-32 top-16 h-80 w-80 rounded-full bg-(--butter) opacity-70 blur-3xl" />
-        <div className="absolute -left-24 top-48 h-64 w-64 rounded-full bg-(--peach) opacity-[0.45] blur-3xl" />
-        <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center">
-          <div className="relative min-h-[420px]">
-            <div className="absolute inset-x-0 top-0 h-[82%] rounded-[56px] bg-white shadow-[0_26px_90px_rgba(33,26,12,0.08)]" />
-            <div className="absolute left-4 top-6 h-[70%] w-[72%] overflow-hidden rounded-[48px] rounded-br-[180px]">
-              <Image
-                src="/photos/Banner2.jpg"
-                alt="Fresh ingredients prepared for poke bowls"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-(--butter) sm:h-72 sm:w-72" />
-            <div className="absolute right-10 top-10 w-36 rounded-full border-8 border-white bg-white p-2 shadow-[0_18px_40px_rgba(0,0,0,0.12)] sm:w-44">
-              <Image
-                src="/photos/Fuel%20Up%20Energy.png"
-                alt="Fuel Up Energy poke bowl"
-                width={260}
-                height={264}
-                sizes="176px"
-                className="h-auto w-full rounded-full"
-              />
-            </div>
-          </div>
-
-          <div className="relative">
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-(--brand-red)">
-              Our Story
+      <section className="pb-16 lg:pb-24">
+        <div className="mx-auto hidden max-w-[1500px] px-8 md:block md:px-16 lg:px-24">
+          <Reveal delay={80}>
+            <p className="text-[10px] uppercase tracking-[0.32em] text-(--brand-red) md:text-xs">
+              Fresh Fuel Poke
             </p>
-            <h2 className="mt-4 max-w-xl text-4xl font-black leading-tight tracking-[-0.04em] text-stone-900 sm:text-5xl">
-              Healthy should still feel generous, fresh, and craveable.
+            <h2 className="mt-4 font-serif text-5xl italic leading-[0.95] tracking-[-0.03em] text-stone-950 md:text-7xl">
+              Fresh bowls, bright flavors, and kitchen energy in motion.
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-8 text-stone-700 sm:text-lg">
-              Fresh Fuel Poke serves bright, satisfying bowls built with fresh
-              proteins, crisp vegetables, and house-made sauces that keep every
-              bite balanced and full of flavor.
+            <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-500 md:text-base">
+              A moving glimpse of our bowls, fresh prep, and everyday kitchen
+              rhythm that keeps the page feeling lively and food-first.
             </p>
-            <p className="mt-5 max-w-xl text-base leading-8 text-stone-700 sm:text-lg">
-              Whether you are stopping in for lunch, ordering dinner, or feeding
-              a group, the menu is built to feel clean, filling, and easy to
-              come back to.
-            </p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-[28px] bg-white px-5 py-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-stone-500">
-                  Flavor
-                </p>
-                <p className="mt-3 text-lg font-semibold text-stone-950">
-                  Bright sauces and contrast-driven toppings
-                </p>
-              </div>
-              <div className="rounded-[28px] bg-white px-5 py-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-stone-500">
-                  Speed
-                </p>
-                <p className="mt-3 text-lg font-semibold text-stone-950">
-                  Lunch-ready service and delivery-first clarity
-                </p>
-              </div>
-              <div className="rounded-[28px] bg-white px-5 py-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-stone-500">
-                  Flexibility
-                </p>
-                <p className="mt-3 text-lg font-semibold text-stone-950">
-                  Bowls, combo sets, and catering trays for groups
-                </p>
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </div>
+
+        <Reveal className="mt-10 space-y-4 md:mt-12" delay={180}>
+          <ImageMarquee images={marqueeRows[0]} speedClass="marquee-left" />
+          <ImageMarquee images={marqueeRows[1]} speedClass="marquee-right" />
+        </Reveal>
       </section>
 
-      <section className="border-y border-stone-200/70 bg-white px-5 py-24 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-sm font-bold uppercase tracking-[0.3em] text-(--brand-red)">
-                Signature Menu
+      <section className="border-y border-stone-200 py-20 md:py-28">
+        <Reveal delay={80}>
+          <BowlCarousel />
+        </Reveal>
+      </section>
+
+      <section className="relative h-[50vh] overflow-hidden md:h-[72vh]">
+        <Image
+          src="/photos/Banner3.jpg"
+          alt="Fresh ingredients being prepared"
+          fill
+          sizes="100vw"
+          className="slow-pan object-cover"
+        />
+        <div className="absolute inset-0 bg-black/20" />
+        <Reveal
+          className="absolute inset-0 flex items-center justify-center px-8"
+          delay={80}
+        >
+          <p className="max-w-xl text-center text-[10px] uppercase tracking-[0.42em] text-white md:text-xs">
+            Crafted with intention. Built for the camera. Still made to taste
+            real.
+          </p>
+        </Reveal>
+      </section>
+
+      <section
+        id="menu-section"
+        className="bg-[#121212] px-8 py-24 text-white md:px-16 md:py-40 lg:px-24"
+      >
+        <Reveal className="mx-auto max-w-[1200px]" delay={80}>
+          <div className="mb-20 flex items-end justify-between md:mb-28">
+            <div>
+              <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-stone-500 md:text-xs">
+                Full Menu
               </p>
-              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-stone-950 sm:text-5xl">
-                The bowls our guests come back for.
+              <h2 className="font-serif text-4xl leading-tight text-stone-100 md:text-6xl">
+                What We Serve
               </h2>
-              <p className="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-                From lighter salmon bowls to fuller post-workout favorites,
-                every signature dish is built fresh to order and easy to enjoy
-                any time of day.
-              </p>
             </div>
-            <div className="flex gap-3">
-              <button
-                type="button"
-                className="rounded-full border border-stone-300 px-5 py-3 text-sm font-bold uppercase tracking-[0.22em] text-stone-900 transition hover:border-stone-900"
-              >
-                Fresh Daily
-              </button>
-              <button
-                type="button"
-                className="rounded-full bg-stone-950 px-5 py-3 text-sm font-bold uppercase tracking-[0.22em] text-white transition hover:translate-y-[-2px]"
-              >
-                Catering Ready
-              </button>
-            </div>
+            <p className="hidden max-w-xs text-right text-xs leading-relaxed tracking-[0.15em] text-stone-500 md:block">
+              Each dish is assembled to order. Allergen notes available on
+              request.
+            </p>
           </div>
-          <div className="mt-12">
-            <MenuCarousel bowls={bowlItems} />
+
+          <div className="grid gap-16 lg:grid-cols-3 lg:gap-20">
+            {menuCategories.map((category) => (
+              <div key={category.title}>
+                <h3 className="mb-2 font-serif text-2xl text-stone-100 md:text-3xl">
+                  {category.title}
+                </h3>
+                <p className="mb-10 text-xs tracking-[0.15em] text-stone-500">
+                  {category.note}
+                </p>
+                <div className="space-y-6">
+                  {category.items.map((item) => (
+                    <div
+                      key={item.name}
+                      className="group flex items-baseline justify-between border-b border-stone-800/50 pb-5 transition-colors duration-300 hover:border-stone-500"
+                    >
+                      <span className="text-base text-stone-200 transition-colors group-hover:text-white md:text-lg">
+                        {item.name}
+                      </span>
+                      <span className="font-mono text-sm tracking-widest text-stone-500">
+                        {item.price}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      <section className="relative px-5 py-24 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-          <div className="max-w-xl">
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--brand-red)]">
-              Ingredients
+      <section className="bg-[#121212] py-20 text-white md:py-28">
+        <Reveal delay={80}>
+          <IngredientStrip />
+        </Reveal>
+      </section>
+
+      <section className="border-b border-stone-200 py-24 md:py-40">
+        <Reveal delay={80}>
+          <TestimonialCarousel />
+        </Reveal>
+      </section>
+
+      <section className="px-8 py-24 md:px-16 md:py-40 lg:px-24">
+        <Reveal
+          className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2 lg:gap-24"
+          delay={80}
+        >
+          <div>
+            <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-stone-400 md:text-xs">
+              Visit
             </p>
-            <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-stone-950 sm:text-5xl">
-              Ingredients people recognize, layered with sauces that keep things
-              lively.
+            <h2 className="mb-8 font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
+              Hours &<br />
+              Location
             </h2>
-            <p className="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-              We keep the ingredient list simple: quality proteins, fresh
-              produce, and bold sauces that add brightness without covering up
-              the bowl underneath.
+            <p className="mb-12 max-w-md text-sm leading-relaxed tracking-wide text-stone-500 md:text-base">
+              Walk in, call ahead, or reserve online. We seat on a first-come
+              basis for parties under four.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              {[
-                "Lean proteins",
-                "Colorful toppings",
-                "House dressings",
-                "Catering trays",
-              ].map((item) => (
+
+            <div className="space-y-4">
+              {hours.map((hour) => (
                 <div
-                  key={item}
-                  className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-stone-700 shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
+                  key={hour.label}
+                  className="flex items-baseline justify-between border-b border-stone-200 pb-4"
                 >
-                  {item}
+                  <span className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
+                    {hour.label}
+                  </span>
+                  <span className="text-sm font-medium tracking-wide text-stone-900">
+                    {hour.value}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {ingredientItems.map((ingredient, index) => (
-              <div
-                key={ingredient.name}
-                className="group rounded-[30px] bg-white p-5 shadow-[0_14px_45px_rgba(0,0,0,0.06)] transition duration-300 hover:translate-y-[-6px]"
-                style={{ animationDelay: `${index * 90}ms` }}
-              >
-                <div className="relative aspect-square overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,#fffdf6_0%,#f7f1dd_100%)]">
-                  <Image
-                    src={ingredient.image}
-                    alt={ingredient.name}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1280px) 25vw, 18vw"
-                    className="object-contain p-3 transition duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <p className="mt-4 text-center text-sm font-bold uppercase tracking-[0.22em] text-stone-500">
-                  {ingredient.name}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[var(--paper)] px-5 py-24 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
-          {featuredBowls.map((bowl) => (
-            <article
-              key={bowl.name}
-              className="flex flex-col items-center text-center"
-            >
-              <h3 className="text-3xl font-bold uppercase tracking-[0.2em] text-[#c88005] sm:text-4xl">
-                {bowl.name}
-              </h3>
-              <div className="relative mt-8 aspect-square w-full max-w-[340px] sm:max-w-[420px]">
-                <Image
-                  src={bowl.image}
-                  alt={bowl.name}
-                  fill
-                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 420px, 32vw"
-                  className="object-contain drop-shadow-[0_18px_40px_rgba(112,124,151,0.28)]"
-                />
-              </div>
-              <div className="mt-8 max-w-md space-y-6 text-[#4f6877]">
-                <div>
-                  <p className="text-2xl font-medium tracking-[0.08em]">
-                    Benifits:
-                  </p>
-                  <p className="mt-2 text-xl leading-9 tracking-[0.08em]">
-                    {bowl.benefits.join(", ")}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-2xl font-medium tracking-[0.08em]">
-                    Key Ingredients:
-                  </p>
-                  <p className="mt-2 text-xl leading-9 tracking-[0.08em]">
-                    {bowl.ingredients.join(", ")}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <footer className="bg-[var(--lime)] px-5 py-10 text-white sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3 md:items-end">
-          <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left md:justify-self-start">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/95">
-              Follow Us
-            </p>
-            <button
-              type="button"
-              aria-label="Instagram"
-              className="flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-white/90 bg-transparent transition hover:bg-white/10"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-8 w-8"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.9"
-              >
-                <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
-                <circle cx="12" cy="12" r="4.1" />
-                <circle
-                  cx="17.4"
-                  cy="6.7"
-                  r="1"
-                  fill="currentColor"
-                  stroke="none"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <div className="md:justify-self-center md:self-end">
-            <p className="text-center text-sm font-semibold tracking-[0.18em] text-white/95">
-              ©Copyright Freshfuelpoke 2026
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center gap-4 text-center md:items-end md:text-right md:justify-self-end">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/95">
-              Delivery Service By
-            </p>
-            <div className="flex items-center justify-center gap-4 md:justify-end">
+          <div className="relative">
+            <div className="relative aspect-4/5 overflow-hidden bg-stone-100">
               <Image
-                src="/photos/food%20panda.webp"
-                alt="foodpanda"
-                width={92}
-                height={65}
-                sizes="92px"
-                className="h-auto w-[84px]"
-              />
-              <Image
-                src="/photos/keeta.png"
-                alt="Keeta"
-                width={52}
-                height={52}
-                sizes="52px"
-                className="h-auto w-11 rounded-xl"
+                src="/photos/Banner2.jpg"
+                alt="Inside Fresh Fuel Poke"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
+            <div className="mt-6">
+              <p className="mb-2 text-xs uppercase tracking-[0.2em] text-stone-400">
+                Address
+              </p>
+              <p className="text-sm leading-relaxed tracking-wide text-stone-700 md:text-base">
+                Central, Hong Kong
+                <br />
+                Dine-in · Takeaway · Delivery
+              </p>
+            </div>
           </div>
+        </Reveal>
+      </section>
+
+      <section
+        id="reserve"
+        className="relative flex min-h-[64vh] items-center justify-center overflow-hidden"
+      >
+        <div className="absolute inset-0">
+          <Image
+            src="/photos/Banner1.jpg"
+            alt="Fresh Fuel Poke restaurant ambiance"
+            fill
+            sizes="100vw"
+            className="slow-pan object-cover"
+          />
+          <div className="absolute inset-0 bg-black/55" />
         </div>
+
+        <Reveal
+          className="relative z-10 px-8 text-center text-white md:px-16"
+          delay={60}
+        >
+          <p className="text-[10px] uppercase tracking-[0.32em] text-(--lime) md:text-xs">
+            Final CTA
+          </p>
+          <h2 className="mx-auto mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.9] tracking-[-0.05em] md:text-7xl">
+            Reserve a table before the night gets busy.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 tracking-[0.08em] text-white/72 md:text-base">
+            {restaurantInfo.shortTagline}
+          </p>
+          <div className="mt-10 flex justify-center">
+            <ActionButtons
+              primaryClassName="rounded-full bg-[var(--brand-red)] px-10 py-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(207,51,40,0.28)] transition hover:-translate-y-1"
+              secondaryClassName="rounded-full bg-white px-10 py-5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#121212] transition hover:bg-stone-100"
+            />
+          </div>
+        </Reveal>
+      </section>
+
+      <footer className="border-t border-stone-200 bg-[#faf7ef] px-8 py-16 text-stone-950 md:px-16 lg:px-24">
+        <Reveal
+          className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_0.85fr_0.95fr] lg:items-start"
+          delay={80}
+        >
+          <div>
+            <Image
+              src="/photos/logo.png"
+              alt="Fresh Fuel Poke logo"
+              width={160}
+              height={77}
+              className="h-auto w-28 md:w-36"
+            />
+            <p className="mt-6 max-w-md text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
+              Fresh bowls, bright ingredients, and feel-good meals for dine-in,
+              takeaway, and delivery in Central.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                aria-label="Instagram"
+                className="flex items-center gap-3 rounded-full border border-stone-300 bg-white px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.9"
+                >
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                  <circle cx="12" cy="12" r="4.1" />
+                  <circle
+                    cx="17.4"
+                    cy="6.7"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+                Instagram
+              </button>
+              <button
+                type="button"
+                aria-label="Facebook"
+                className="flex items-center gap-3 rounded-full border border-stone-300 bg-white px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="currentColor"
+                >
+                  <path d="M13.5 21v-8.1h2.7l.4-3.2h-3.1V7.66c0-.93.25-1.56 1.58-1.56H16.7V3.24c-.3-.04-1.3-.12-2.47-.12-2.45 0-4.13 1.49-4.13 4.24v2.36H7.3v3.2h2.8V21h3.4Z" />
+                </svg>
+                Facebook
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
+              Visit
+            </p>
+            <div className="mt-5 space-y-4 rounded-[28px] border border-stone-200 bg-white p-6">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
+                  Location
+                </p>
+                <p className="mt-2 text-sm leading-7 text-stone-700">
+                  Central, Hong Kong
+                  <br />
+                  Dine-in · Takeaway · Delivery
+                </p>
+              </div>
+              <div className="h-px bg-stone-200" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
+                  Hours
+                </p>
+                <p className="mt-2 text-sm leading-7 text-stone-700">
+                  Mon - Thu: 11:00 - 21:30
+                  <br />
+                  Fri - Sun: 10:30 - 22:30
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:justify-self-end">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
+              Delivery Partners
+            </p>
+            <div className="mt-5 rounded-[28px] border border-stone-200 bg-white p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
+                Order through our delivery platforms
+              </p>
+              <div className="mt-5 flex items-center gap-4">
+                <Image
+                  src="/photos/food%20panda.webp"
+                  alt="foodpanda"
+                  width={92}
+                  height={65}
+                  sizes="92px"
+                  className="h-auto w-[82px]"
+                />
+                <Image
+                  src="/photos/keeta.png"
+                  alt="Keeta"
+                  width={52}
+                  height={52}
+                  sizes="52px"
+                  className="h-auto w-11 rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal
+          className="mx-auto mt-12 max-w-[1400px] border-t border-stone-200 pt-6"
+          delay={160}
+        >
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
+            © Copyright Freshfuelpoke 2026
+          </p>
+        </Reveal>
       </footer>
     </main>
   );
