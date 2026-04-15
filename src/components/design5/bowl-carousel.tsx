@@ -181,7 +181,7 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
           <button
             type="button"
             onClick={() => goTo("prev")}
-            className={`flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300 ${controlClass}`}
+            className={`flex h-14 w-14 items-center justify-center rounded-md border transition-all duration-300 ${controlClass}`}
             aria-label="Previous bowl"
           >
             <svg
@@ -198,7 +198,7 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
           <button
             type="button"
             onClick={() => goTo("next")}
-            className={`flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300 ${controlClass}`}
+            className={`flex h-14 w-14 items-center justify-center rounded-md border transition-all duration-300 ${controlClass}`}
             aria-label="Next bowl"
           >
             <svg
@@ -246,12 +246,6 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
                   sizes="(max-width: 640px) 85vw, (max-width: 1024px) 420px, 480px"
                   className="object-contain p-8 transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Number overlay */}
-                <span
-                  className={`absolute left-6 top-6 font-mono text-sm tracking-widest ${priceClass}`}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
               </div>
 
               {/* Tags */}

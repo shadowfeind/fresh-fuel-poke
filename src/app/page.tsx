@@ -1,11 +1,6 @@
 import Image from "next/image";
 import { BowlCarousel } from "@/components/design5/bowl-carousel";
-import { IngredientStrip } from "@/components/design5/ingredient-strip";
-import { TestimonialCarousel } from "@/components/design5/testimonial-carousel";
-import { ActionButtons } from "@/components/restaurant/common";
-import { restaurantInfo } from "@/components/restaurant/content";
 import { HeroCarousel } from "@/components/restaurant/hero-carousel";
-import { ImageMarquee } from "@/components/restaurant/image-marquee";
 import { Reveal } from "@/components/restaurant/reveal";
 import { SiteHeader } from "@/components/restaurant/site-header";
 
@@ -73,45 +68,6 @@ const hours = [
   { label: "Sunday", value: "10:30 — 21:00" },
 ] as const;
 
-const marqueeRows = [
-  [
-    {
-      src: "/photos/Banner2.jpg",
-      alt: "Fresh Fuel Poke preparation scene",
-    },
-    {
-      src: "/photos/Bliss.png",
-      alt: "Bliss bowl",
-    },
-    {
-      src: "/photos/Meal%20Set.png",
-      alt: "Fresh Fuel Poke meal set",
-    },
-    {
-      src: "/photos/Banner3.jpg",
-      alt: "Fresh ingredients being prepared",
-    },
-  ],
-  [
-    {
-      src: "/photos/Low%20Calories.png",
-      alt: "Low Calorie bowl",
-    },
-    {
-      src: "/photos/Banner1.jpg",
-      alt: "Fresh Fuel Poke restaurant spread",
-    },
-    {
-      src: "/photos/Fuel%20Up%20Energy.png",
-      alt: "Fuel Up Energy bowl",
-    },
-    {
-      src: "/photos/Cardio%20Crunch.png",
-      alt: "Cardio Crunch bowl",
-    },
-  ],
-];
-
 const heroSlides = [
   {
     src: "/photos/Banner1.jpg",
@@ -145,13 +101,10 @@ export default function Design2Page() {
 
       <section className="px-8 py-16 md:px-16 md:py-20 lg:px-24 lg:py-24">
         <Reveal delay={80}>
-          <div className="mx-auto max-w-[1500px] bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-[44px] lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
+          <div className="mx-auto max-w-[1500px] bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-lg lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
             <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
               <div className="max-w-xl py-2 md:px-0 md:py-0 lg:pb-10">
-                <p className="text-[10px] uppercase tracking-[0.32em] text-(--lime) md:text-xs">
-                  Fresh Fuel Poke
-                </p>
-                <h2 className="mt-4 font-serif text-5xl italic leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
+                <h2 className="mt-4 font-serif text-5xl  leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
                   Our Story
                 </h2>
                 <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
@@ -168,7 +121,7 @@ export default function Design2Page() {
                 </p>
               </div>
 
-              <div className="hidden rounded-[38px] border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6 lg:block">
+              <div className="hidden rounded-lg border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6 lg:block">
                 <div className="relative hidden min-h-[720px] overflow-hidden lg:block">
                   <div className="pointer-events-none absolute inset-x-0 top-8 text-center text-[5rem] font-black uppercase leading-none tracking-[0.32em] text-stone-900/4 lg:text-[6.5rem]">
                     Fresh Fuel
@@ -179,7 +132,7 @@ export default function Design2Page() {
                   {floatingHighlights.map((item, index) => (
                     <article
                       key={item.title}
-                      className={`absolute rounded-[34px] border border-stone-200 bg-white p-4 text-[#121212] shadow-[0_30px_70px_rgba(15,23,42,0.12)] transition duration-500 hover:-translate-y-2 ${
+                      className={`absolute rounded-lg border border-stone-200 bg-white p-4 text-[#121212] shadow-[0_30px_70px_rgba(15,23,42,0.12)] transition duration-500 hover:-translate-y-2 ${
                         index === 0
                           ? "floating-soft left-[3%] top-[12%] w-[34%] max-w-[250px] rotate-[-5deg]"
                           : index === 1
@@ -188,7 +141,7 @@ export default function Design2Page() {
                       }`}
                     >
                       <div
-                        className={`relative overflow-hidden rounded-[28px] bg-[#f5f4ef] ${
+                        className={`relative overflow-hidden rounded-md bg-[#f5f4ef] ${
                           item.size === "large" ? "aspect-square" : "aspect-4/5"
                         }`}
                       >
@@ -225,51 +178,9 @@ export default function Design2Page() {
         </Reveal>
       </section>
 
-      <section className="pb-16 lg:pb-24">
-        <div className="mx-auto hidden max-w-[1500px] px-8 md:block md:px-16 lg:px-24">
-          <Reveal delay={80}>
-            <p className="text-[10px] uppercase tracking-[0.32em] text-(--brand-red) md:text-xs">
-              Fresh Fuel Poke
-            </p>
-            <h2 className="mt-4 font-serif text-5xl italic leading-[0.95] tracking-[-0.03em] text-stone-950 md:text-7xl">
-              Fresh bowls, bright flavors, and kitchen energy in motion.
-            </h2>
-            <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-500 md:text-base">
-              A moving glimpse of our bowls, fresh prep, and everyday kitchen
-              rhythm that keeps the page feeling lively and food-first.
-            </p>
-          </Reveal>
-        </div>
-
-        <Reveal className="mt-10 space-y-4 md:mt-12" delay={180}>
-          <ImageMarquee images={marqueeRows[0]} speedClass="marquee-left" />
-          <ImageMarquee images={marqueeRows[1]} speedClass="marquee-right" />
-        </Reveal>
-      </section>
-
       <section className="border-y border-stone-200 py-20 md:py-28">
         <Reveal delay={80}>
           <BowlCarousel />
-        </Reveal>
-      </section>
-
-      <section className="relative h-[50vh] overflow-hidden md:h-[72vh]">
-        <Image
-          src="/photos/Banner3.jpg"
-          alt="Fresh ingredients being prepared"
-          fill
-          sizes="100vw"
-          className="slow-pan object-cover"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <Reveal
-          className="absolute inset-0 flex items-center justify-center px-8"
-          delay={80}
-        >
-          <p className="max-w-xl text-center text-[10px] uppercase tracking-[0.42em] text-white md:text-xs">
-            Crafted with intention. Built for the camera. Still made to taste
-            real.
-          </p>
         </Reveal>
       </section>
 
@@ -323,18 +234,6 @@ export default function Design2Page() {
         </Reveal>
       </section>
 
-      <section className="bg-[#121212] py-20 text-white md:py-28">
-        <Reveal delay={80}>
-          <IngredientStrip />
-        </Reveal>
-      </section>
-
-      <section className="border-b border-stone-200 py-24 md:py-40">
-        <Reveal delay={80}>
-          <TestimonialCarousel />
-        </Reveal>
-      </section>
-
       <section className="px-8 py-24 md:px-16 md:py-40 lg:px-24">
         <Reveal
           className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2 lg:gap-24"
@@ -349,8 +248,8 @@ export default function Design2Page() {
               Location
             </h2>
             <p className="mb-12 max-w-md text-sm leading-relaxed tracking-wide text-stone-500 md:text-base">
-              Walk in, call ahead, or reserve online. We seat on a first-come
-              basis for parties under four.
+              Walk in, call ahead, or order for delivery. We seat on a
+              first-come basis for parties under four.
             </p>
 
             <div className="space-y-4">
@@ -393,173 +292,6 @@ export default function Design2Page() {
           </div>
         </Reveal>
       </section>
-
-      <section
-        id="reserve"
-        className="relative flex min-h-[64vh] items-center justify-center overflow-hidden"
-      >
-        <div className="absolute inset-0">
-          <Image
-            src="/photos/Banner1.jpg"
-            alt="Fresh Fuel Poke restaurant ambiance"
-            fill
-            sizes="100vw"
-            className="slow-pan object-cover"
-          />
-          <div className="absolute inset-0 bg-black/55" />
-        </div>
-
-        <Reveal
-          className="relative z-10 px-8 text-center text-white md:px-16"
-          delay={60}
-        >
-          <p className="text-[10px] uppercase tracking-[0.32em] text-(--lime) md:text-xs">
-            Final CTA
-          </p>
-          <h2 className="mx-auto mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.9] tracking-[-0.05em] md:text-7xl">
-            Reserve a table before the night gets busy.
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 tracking-[0.08em] text-white/72 md:text-base">
-            {restaurantInfo.shortTagline}
-          </p>
-          <div className="mt-10 flex justify-center">
-            <ActionButtons
-              primaryClassName="rounded-full bg-[var(--brand-red)] px-10 py-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(207,51,40,0.28)] transition hover:-translate-y-1"
-              secondaryClassName="rounded-full bg-white px-10 py-5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#121212] transition hover:bg-stone-100"
-            />
-          </div>
-        </Reveal>
-      </section>
-
-      <footer className="border-t border-stone-200 bg-[#faf7ef] px-8 py-16 text-stone-950 md:px-16 lg:px-24">
-        <Reveal
-          className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_0.85fr_0.95fr] lg:items-start"
-          delay={80}
-        >
-          <div>
-            <Image
-              src="/photos/logo.png"
-              alt="Fresh Fuel Poke logo"
-              width={160}
-              height={77}
-              className="h-auto w-28 md:w-36"
-            />
-            <p className="mt-6 max-w-md text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
-              Fresh bowls, bright ingredients, and feel-good meals for dine-in,
-              takeaway, and delivery in Central.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <button
-                type="button"
-                aria-label="Instagram"
-                className="flex items-center gap-3 rounded-full border border-stone-300 bg-white px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                >
-                  <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
-                  <circle cx="12" cy="12" r="4.1" />
-                  <circle
-                    cx="17.4"
-                    cy="6.7"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
-                </svg>
-                Instagram
-              </button>
-              <button
-                type="button"
-                aria-label="Facebook"
-                className="flex items-center gap-3 rounded-full border border-stone-300 bg-white px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="currentColor"
-                >
-                  <path d="M13.5 21v-8.1h2.7l.4-3.2h-3.1V7.66c0-.93.25-1.56 1.58-1.56H16.7V3.24c-.3-.04-1.3-.12-2.47-.12-2.45 0-4.13 1.49-4.13 4.24v2.36H7.3v3.2h2.8V21h3.4Z" />
-                </svg>
-                Facebook
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
-              Visit
-            </p>
-            <div className="mt-5 space-y-4 rounded-[28px] border border-stone-200 bg-white p-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
-                  Location
-                </p>
-                <p className="mt-2 text-sm leading-7 text-stone-700">
-                  Central, Hong Kong
-                  <br />
-                  Dine-in · Takeaway · Delivery
-                </p>
-              </div>
-              <div className="h-px bg-stone-200" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
-                  Hours
-                </p>
-                <p className="mt-2 text-sm leading-7 text-stone-700">
-                  Mon - Thu: 11:00 - 21:30
-                  <br />
-                  Fri - Sun: 10:30 - 22:30
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:justify-self-end">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
-              Delivery Partners
-            </p>
-            <div className="mt-5 rounded-[28px] border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
-                Order through our delivery platforms
-              </p>
-              <div className="mt-5 flex items-center gap-4">
-                <Image
-                  src="/photos/food%20panda.webp"
-                  alt="foodpanda"
-                  width={92}
-                  height={65}
-                  sizes="92px"
-                  className="h-auto w-[82px]"
-                />
-                <Image
-                  src="/photos/keeta.png"
-                  alt="Keeta"
-                  width={52}
-                  height={52}
-                  sizes="52px"
-                  className="h-auto w-11 rounded-xl"
-                />
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal
-          className="mx-auto mt-12 max-w-[1400px] border-t border-stone-200 pt-6"
-          delay={160}
-        >
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
-            © Copyright Freshfuelpoke 2026
-          </p>
-        </Reveal>
-      </footer>
     </main>
   );
 }

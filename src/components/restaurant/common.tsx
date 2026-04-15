@@ -52,7 +52,7 @@ export function HoursLocationPanel({
 
   return (
     <section className={className}>
-      <div className={`rounded-[32px] border ${borderClass} p-6 sm:p-8`}>
+      <div className={`rounded-lg border ${borderClass} p-6 sm:p-8`}>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p
@@ -76,7 +76,7 @@ export function HoursLocationPanel({
             {hours.map((slot) => (
               <div
                 key={slot.label}
-                className={`flex items-center justify-between rounded-2xl border ${borderClass} px-4 py-3`}
+                className={`flex items-center justify-between rounded-md border ${borderClass} px-4 py-3`}
               >
                 <span
                   className={`text-sm font-semibold uppercase tracking-[0.16em] ${bodyClass}`}
@@ -165,7 +165,7 @@ export function RestaurantFooter({
           <button
             type="button"
             aria-label="Instagram"
-            className={`flex h-14 w-14 items-center justify-center rounded-2xl border-2 ${borderClass} bg-transparent transition ${iconHoverClass}`}
+            className={`flex h-14 w-14 items-center justify-center rounded-md border-2 ${borderClass} bg-transparent transition ${iconHoverClass}`}
           >
             <svg
               aria-hidden="true"
@@ -217,7 +217,7 @@ export function RestaurantFooter({
               width={52}
               height={52}
               sizes="52px"
-              className="h-auto w-11 rounded-xl"
+              className="h-auto w-11 rounded-md"
             />
           </div>
         </div>

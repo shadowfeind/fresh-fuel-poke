@@ -8,8 +8,7 @@
   --butter: #efe46a;
   --peach: #f8c7a3;
   --paper: #fffdf7;
-  --font-display:
-    "Allura", "Snell Roundhand", "Segoe Script", "Apple Chancery", cursive;
+  --font-display: var(--font-body);
   --font-body: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
 }
 

@@ -94,7 +94,7 @@ export function HeroCarousel({
             {description}
           </p>
 
-          <div className="min-w-[280px] rounded-[28px] border border-white/14 bg-black/18 p-4 text-white backdrop-blur-sm md:min-w-[360px] md:p-5">
+          <div className="min-w-[280px] rounded-lg border border-white/14 bg-black/18 p-4 text-white backdrop-blur-sm md:min-w-[360px] md:p-5">
             <div className="flex items-center justify-between gap-6">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.3em] text-white/42">
@@ -116,7 +116,7 @@ export function HeroCarousel({
                 onClick={() =>
                   setSlide((activeIndex - 1 + slides.length) % slides.length)
                 }
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-white/6 transition hover:bg-white hover:text-stone-950"
+                className="flex h-11 w-11 items-center justify-center rounded-md border border-white/18 bg-white/6 transition hover:bg-white hover:text-stone-950"
                 aria-label="Previous hero image"
               >
                 <svg
@@ -138,7 +138,7 @@ export function HeroCarousel({
                     type="button"
                     onClick={() => setSlide(index)}
                     aria-label={`Show slide ${index + 1}`}
-                    className={`h-11 flex-1 rounded-full border text-[10px] font-semibold uppercase tracking-[0.24em] transition ${
+                    className={`h-11 flex-1 rounded-md border text-[10px] font-semibold uppercase tracking-[0.24em] transition ${
                       index === activeIndex
                         ? "border-white bg-white text-stone-950"
                         : "border-white/14 bg-white/6 text-white/72 hover:bg-white/12"
@@ -152,7 +152,7 @@ export function HeroCarousel({
               <button
                 type="button"
                 onClick={() => setSlide((activeIndex + 1) % slides.length)}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-white/6 transition hover:bg-white hover:text-stone-950"
+                className="flex h-11 w-11 items-center justify-center rounded-md border border-white/18 bg-white/6 transition hover:bg-white hover:text-stone-950"
                 aria-label="Next hero image"
               >
                 <svg
