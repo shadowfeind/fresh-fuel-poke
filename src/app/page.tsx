@@ -101,7 +101,7 @@ export default function Design2Page() {
 
       <section className="px-8 py-16 md:px-16 md:py-20 lg:px-24 lg:py-24">
         <Reveal delay={80}>
-          <div className="mx-auto max-w-[1500px] bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-lg lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
+          <div className="mx-auto max-w-375 bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-lg lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
             <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
               <div className="max-w-xl py-2 md:px-0 md:py-0 lg:pb-10">
                 <h2 className="mt-4 font-serif text-5xl  leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
@@ -122,7 +122,7 @@ export default function Design2Page() {
               </div>
 
               <div className="hidden rounded-lg border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6 lg:block">
-                <div className="relative hidden min-h-[720px] overflow-hidden lg:block">
+                <div className="relative hidden min-h-180 overflow-hidden lg:block">
                   <div className="pointer-events-none absolute inset-x-0 top-8 text-center text-[5rem] font-black uppercase leading-none tracking-[0.32em] text-stone-900/4 lg:text-[6.5rem]">
                     Fresh Fuel
                   </div>
@@ -134,10 +134,10 @@ export default function Design2Page() {
                       key={item.title}
                       className={`absolute rounded-lg border border-stone-200 bg-white p-4 text-[#121212] shadow-[0_30px_70px_rgba(15,23,42,0.12)] transition duration-500 hover:-translate-y-2 ${
                         index === 0
-                          ? "floating-soft left-[3%] top-[12%] w-[34%] max-w-[250px] rotate-[-5deg]"
+                          ? "floating-soft left-[3%] top-[12%] w-[34%] max-w-62.5 rotate-[-5deg]"
                           : index === 1
-                            ? "floating-medium left-1/2 top-[16%] z-10 w-[44%] max-w-[360px] -translate-x-1/2"
-                            : "floating-slow right-[3%] bottom-[8%] w-[35%] max-w-[260px] rotate-[5deg]"
+                            ? "floating-medium left-1/2 top-[16%] z-10 w-[44%] max-w-90 -translate-x-1/2"
+                            : "floating-slow right-[3%] bottom-[8%] w-[35%] max-w-65 rotate-[5deg]"
                       }`}
                     >
                       <div
@@ -188,7 +188,7 @@ export default function Design2Page() {
         id="menu-section"
         className="bg-[#121212] px-8 py-24 text-white md:px-16 md:py-40 lg:px-24"
       >
-        <Reveal className="mx-auto max-w-[1200px]" delay={80}>
+        <Reveal className="mx-auto max-w-300" delay={80}>
           <div className="mb-20 flex items-end justify-between md:mb-28">
             <div>
               <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-stone-500 md:text-xs">
@@ -236,7 +236,7 @@ export default function Design2Page() {
 
       <section className="px-8 py-24 md:px-16 md:py-40 lg:px-24">
         <Reveal
-          className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2 lg:gap-24"
+          className="mx-auto grid max-w-300 gap-16 lg:grid-cols-2 lg:gap-24"
           delay={80}
         >
           <div>

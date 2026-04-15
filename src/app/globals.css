@@ -208,6 +208,6 @@ button {
   .marquee-down,
   .slow-pan,
   .pulse-halo {
-    animation: none !important;
+    animation: none;
   }
 }

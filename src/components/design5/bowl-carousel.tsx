@@ -233,7 +233,7 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
             <article
               key={`${bowl.name}-${index}`}
               ref={index === 0 ? sampleCardRef : null}
-              className="group w-[85vw] shrink-0 sm:w-[420px] lg:w-[480px]"
+              className="group w-[85vw] shrink-0 sm:w-105 lg:w-120"
             >
               {/* Bowl image */}
               <div
