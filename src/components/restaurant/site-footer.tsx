@@ -5,7 +5,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-stone-800 bg-[#121212] px-8 py-16 text-white md:px-16 lg:px-24">
       <Reveal
-        className="mx-auto grid custom-container gap-12 lg:grid-cols-[1.2fr_0.85fr_0.95fr] lg:items-start"
+        className="mx-auto grid custom-container gap-12 lg:grid-cols-[1.15fr_0.65fr_0.85fr_0.95fr] lg:items-start"
         delay={80}
       >
         <div>
@@ -20,6 +20,7 @@ export function SiteFooter() {
             Fresh bowls, bright ingredients, and feel-good meals for dine-in,
             takeaway, and delivery in Central.
           </p>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               type="button"
@@ -57,6 +58,31 @@ export function SiteFooter() {
             </button>
           </div>
         </div>
+
+        <nav aria-label="Footer" className="lg:pt-2">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
+            Explore
+          </p>
+          <ul className="mt-5 space-y-3">
+            {[
+              "Home",
+              "About Us",
+              "Dine in & Delivery",
+              "Catering",
+              "Contact Us",
+            ].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="group inline-flex items-center gap-2 text-sm tracking-[0.06em] text-stone-300 transition hover:text-white"
+                >
+                  <span className="h-[1px] w-4 bg-stone-700 transition group-hover:w-7 group-hover:bg-white" />
+                  <span>{item}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">

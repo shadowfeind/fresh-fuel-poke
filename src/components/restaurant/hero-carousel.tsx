@@ -58,7 +58,7 @@ export function HeroCarousel({
         {slides.map((slide, index) => (
           <div
             key={slide.src}
-            className={`absolute inset-0 transition-opacity duration-700 ${
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -68,8 +68,8 @@ export function HeroCarousel({
               fill
               priority={index === 0}
               sizes="100vw"
-              className={`object-cover transition-transform duration-1600 ${
-                index === activeIndex ? "scale-100" : "scale-105"
+              className={`object-cover transition-transform duration-[8000ms] ease-out ${
+                index === activeIndex ? "scale-105" : "scale-100"
               }`}
             />
           </div>
@@ -78,43 +78,74 @@ export function HeroCarousel({
       </div>
 
       <div className="relative z-10 w-full px-8 pb-16 md:px-16 md:pb-24 lg:px-24">
-        <div className="mx-auto custom-container">
-          <p className="text-[10px] uppercase tracking-[0.34em] text-(--lime) md:text-xs">
-            {currentSlide?.label ?? eyebrow}
-          </p>
-          <h1 className="mt-5 text-white">
-            {activeTitle.map((line) => (
-              <span
-                key={line}
-                className="block text-6xl font-black uppercase leading-[0.86] tracking-[-0.05em] md:text-8xl lg:text-[10rem]"
+        <div className="mx-auto custom-container grid items-end">
+          {slides.map((slide, index) => {
+            const slideTitle = slide.title ?? title;
+            const slideAccent = slide.accent ?? accent;
+            const slideDescription = slide.description ?? description;
+            const slideLabel = slide.label ?? eyebrow;
+
+            return (
+              <div
+                key={`text-${slide.src}`}
+                className={`col-start-1 row-start-1 transition-all duration-1000 ease-out ${
+                  index === activeIndex
+                    ? "translate-y-0 opacity-100"
+                    : "pointer-events-none translate-y-8 opacity-0"
+                }`}
               >
-                {line}
-              </span>
-            ))}
-            <span className="block font-serif text-5xl italic font-light leading-[0.92] tracking-[-0.04em] text-white/78 md:text-7xl lg:text-[7rem]">
-              {activeAccent}
-            </span>
-          </h1>
+                <p className="text-[10px] uppercase tracking-[0.34em] text-(--lime) md:text-xs">
+                  {slideLabel}
+                </p>
+                <h1 className="mt-5 text-white">
+                  {slideTitle.map((line) => (
+                    <span
+                      key={line}
+                      className="block text-6xl font-black uppercase leading-[0.86] tracking-[-0.05em] md:text-8xl lg:text-[10rem]"
+                    >
+                      {line}
+                    </span>
+                  ))}
+                  <span className="block font-serif text-5xl italic font-light leading-[0.92] tracking-[-0.04em] text-white/78 md:text-7xl lg:text-[7rem]">
+                    {slideAccent}
+                  </span>
+                </h1>
 
-          <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-md text-sm tracking-[0.12em] text-white/65 md:text-base">
-              {activeDescription}
-            </p>
+                <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between">
+                  <p className="max-w-md text-sm tracking-[0.12em] text-white/65 md:text-base">
+                    {slideDescription}
+                  </p>
+                  
+                  {/* Invisible spacer to maintain layout matching the dots */}
+                  <div className="invisible flex h-2.5 items-center gap-3" aria-hidden="true">
+                    {slides.map((_, i) => (
+                      <div key={i} className="w-2.5 h-2.5" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
 
-            <div className="flex items-center gap-3">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.src}
-                  type="button"
-                  onClick={() => setSlide(index)}
-                  aria-label={`Show slide ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    index === activeIndex
-                      ? "w-8 bg-white"
-                      : "w-2.5 bg-white/40 hover:bg-white/70"
-                  }`}
-                />
-              ))}
+          {/* Navigation Dots Overlay */}
+          <div className="col-start-1 row-start-1 pointer-events-none flex flex-col justify-end">
+            <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between">
+              <div className="flex-1" />
+              <div className="pointer-events-auto flex items-center gap-3">
+                {slides.map((slide, index) => (
+                  <button
+                    key={`dot-${slide.src}`}
+                    type="button"
+                    onClick={() => setSlide(index)}
+                    aria-label={`Show slide ${index + 1}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      index === activeIndex
+                        ? "w-8 bg-white"
+                        : "w-2.5 bg-white/40 hover:bg-white/70"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
