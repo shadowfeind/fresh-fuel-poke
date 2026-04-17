@@ -3,9 +3,9 @@ import { Reveal } from "./reveal";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-stone-200 bg-[#faf7ef] px-8 py-16 text-stone-950 md:px-16 lg:px-24">
+    <footer className="border-t border-stone-800 bg-[#121212] px-8 py-16 text-white md:px-16 lg:px-24">
       <Reveal
-        className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_0.85fr_0.95fr] lg:items-start"
+        className="mx-auto grid custom-container gap-12 lg:grid-cols-[1.2fr_0.85fr_0.95fr] lg:items-start"
         delay={80}
       >
         <div>
@@ -16,7 +16,7 @@ export function SiteFooter() {
             height={77}
             className="h-auto w-28 md:w-36"
           />
-          <p className="mt-6 max-w-md text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
+          <p className="mt-6 max-w-md text-sm leading-8 tracking-[0.08em] text-stone-400 md:text-base">
             Fresh bowls, bright ingredients, and feel-good meals for dine-in,
             takeaway, and delivery in Central.
           </p>
@@ -24,7 +24,7 @@ export function SiteFooter() {
             <button
               type="button"
               aria-label="Instagram"
-              className="flex items-center gap-3 rounded-md border border-stone-300 bg-white px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
+              className="flex items-center gap-3 rounded-md border border-stone-700 bg-stone-900 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-white transition hover:border-white hover:bg-white hover:text-stone-950"
             >
               <svg
                 aria-hidden="true"
@@ -43,7 +43,7 @@ export function SiteFooter() {
             <button
               type="button"
               aria-label="Facebook"
-              className="flex items-center gap-3 rounded-md border border-stone-300 bg-white px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
+              className="flex items-center gap-3 rounded-md border border-stone-700 bg-stone-900 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-white transition hover:border-white hover:bg-white hover:text-stone-950"
             >
               <svg
                 aria-hidden="true"
@@ -62,23 +62,23 @@ export function SiteFooter() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
             Visit
           </p>
-          <div className="mt-5 space-y-4 rounded-lg border border-stone-200 bg-white p-6">
+          <div className="mt-5 space-y-4 rounded-lg border border-stone-800 bg-stone-900 p-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
                 Location
               </p>
-              <p className="mt-2 text-sm leading-7 text-stone-700">
+              <p className="mt-2 text-sm leading-7 text-stone-300">
                 Central, Hong Kong
                 <br />
                 Dine-in · Takeaway · Delivery
               </p>
             </div>
-            <div className="h-px bg-stone-200" />
+            <div className="h-px bg-stone-800" />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
                 Hours
               </p>
-              <p className="mt-2 text-sm leading-7 text-stone-700">
+              <p className="mt-2 text-sm leading-7 text-stone-300">
                 Mon - Thu: 11:00 - 21:30
                 <br />
                 Fri - Sun: 10:30 - 22:30
@@ -91,8 +91,8 @@ export function SiteFooter() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
             Delivery Partners
           </p>
-          <div className="mt-5 rounded-lg border border-stone-200 bg-white p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-400">
+          <div className="mt-5 rounded-lg border border-stone-800 bg-stone-900 p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
               Order through our delivery platforms
             </p>
             <div className="mt-5 flex items-center gap-4">
@@ -118,7 +118,7 @@ export function SiteFooter() {
       </Reveal>
 
       <Reveal
-        className="mx-auto mt-12 max-w-[1400px] border-t border-stone-200 pt-6"
+        className="mx-auto mt-12 custom-container border-t border-stone-800 pt-6"
         delay={160}
       >
         <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">

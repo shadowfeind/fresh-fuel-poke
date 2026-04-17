@@ -161,57 +161,59 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-end justify-between mb-16 px-8 md:px-16 lg:px-24">
-        <div>
-          <p
-            className={`mb-4 text-[10px] uppercase tracking-[0.3em] md:text-xs ${eyebrowClass}`}
-          >
-            Signature Bowls
-          </p>
-          <h2
-            className={`font-serif text-4xl leading-[0.95] md:text-6xl lg:text-7xl ${headingClass}`}
-          >
-            Our Signature
-            <br />
-            Dishes
-          </h2>
-        </div>
+      <div className="w-full px-8 md:px-16 lg:px-24 mb-16">
+        <div className="mx-auto custom-container flex items-end justify-between">
+          <div>
+            <p
+              className={`mb-4 text-[10px] uppercase tracking-[0.3em] md:text-xs ${eyebrowClass}`}
+            >
+              Signature Bowls
+            </p>
+            <h2
+              className={`font-serif text-3xl leading-[0.95] md:text-5xl lg:text-5xl ${headingClass}`}
+            >
+              Our Signature
+              <br />
+              Dishes
+            </h2>
+          </div>
 
-        <div className="flex gap-3">
-          <button
-            type="button"
-            onClick={() => goTo("prev")}
-            className={`flex h-14 w-14 items-center justify-center rounded-md border transition-all duration-300 ${controlClass}`}
-            aria-label="Previous bowl"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => goTo("prev")}
+              className={`flex h-14 w-14 items-center justify-center rounded-md border transition-all duration-300 ${controlClass}`}
+              aria-label="Previous bowl"
             >
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => goTo("next")}
-            className={`flex h-14 w-14 items-center justify-center rounded-md border transition-all duration-300 ${controlClass}`}
-            aria-label="Next bowl"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo("next")}
+              className={`flex h-14 w-14 items-center justify-center rounded-md border transition-all duration-300 ${controlClass}`}
+              aria-label="Next bowl"
             >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -285,24 +287,26 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
       </div>
 
       {/* Progress bar */}
-      <div className="px-8 md:px-16 lg:px-24 mt-4">
-        <div className={`relative h-px ${progressTrackClass}`}>
-          <div
-            className={`absolute left-0 top-0 h-px transition-all duration-500 ${progressFillClass}`}
-            style={{ width: `${((displayIndex + 1) / bowls.length) * 100}%` }}
-          />
-        </div>
-        <div className="flex justify-between mt-3">
-          <span
-            className={`font-mono text-[10px] tracking-widest ${priceClass}`}
-          >
-            {String(displayIndex + 1).padStart(2, "0")}
-          </span>
-          <span
-            className={`font-mono text-[10px] tracking-widest ${priceClass}`}
-          >
-            {String(bowls.length).padStart(2, "0")}
-          </span>
+      <div className="w-full px-8 md:px-16 lg:px-24 mt-4">
+        <div className="mx-auto custom-container">
+          <div className={`relative h-px ${progressTrackClass}`}>
+            <div
+              className={`absolute left-0 top-0 h-px transition-all duration-500 ${progressFillClass}`}
+              style={{ width: `${((displayIndex + 1) / bowls.length) * 100}%` }}
+            />
+          </div>
+          <div className="flex justify-between mt-3">
+            <span
+              className={`font-mono text-[10px] tracking-widest ${priceClass}`}
+            >
+              {String(displayIndex + 1).padStart(2, "0")}
+            </span>
+            <span
+              className={`font-mono text-[10px] tracking-widest ${priceClass}`}
+            >
+              {String(bowls.length).padStart(2, "0")}
+            </span>
+          </div>
         </div>
       </div>
     </div>

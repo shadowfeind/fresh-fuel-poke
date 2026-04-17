@@ -55,9 +55,9 @@ export function SiteHeader({
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 lg:px-10">
+      <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-16 lg:px-24">
         <div
-          className={`mx-auto flex max-w-[1600px] items-center justify-between rounded-lg border transition-all duration-300 ${
+          className={`mx-auto flex custom-container items-center justify-between rounded-lg border transition-all duration-300 ${
             isScrolled
               ? "border-stone-200 bg-white/92 px-4 py-3 shadow-[0_18px_50px_rgba(15,23,42,0.12)] backdrop-blur-md md:px-5"
               : "border-white/14 bg-black/18 px-5 py-4 backdrop-blur-sm md:px-7"

@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: "Fresh Fuel Poke",
   description:
     "Fresh Fuel Poke landing page with signature bowls, catering highlights, and vibrant ingredient-driven design.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

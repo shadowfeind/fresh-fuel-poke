@@ -73,16 +73,28 @@ const heroSlides = [
     src: "/photos/Banner1.jpg",
     alt: "Fresh Fuel Poke restaurant spread",
     label: "Signature Dishes",
+    title: ["Signature", "Bowls"] as const,
+    accent: "made fresh.",
+    description:
+      "Our most-loved bowls, built to order with vibrant toppings and house sauces.",
   },
   {
     src: "/photos/Banner2.jpg",
     alt: "Fresh Fuel Poke preparation scene",
     label: "Fresh energy",
+    title: ["Fresh", "Prep"] as const,
+    accent: "Fuel your purpose. Eat with intention",
+    description:
+      "Crisp veg, clean proteins, and bright sauces prepped fast so your bowl stays bold.",
   },
   {
     src: "/photos/Banner3.jpg",
     alt: "Fresh ingredients being prepared",
     label: "Fresh prep",
+    title: ["Bright", "Ingredients"] as const,
+    accent: "real taste.",
+    description:
+      "Color, crunch, and balance from simple ingredients that still feel generous.",
   },
 ] as const;
 
@@ -101,10 +113,10 @@ export default function Design2Page() {
 
       <section className="px-8 py-16 md:px-16 md:py-20 lg:px-24 lg:py-24">
         <Reveal delay={80}>
-          <div className="mx-auto max-w-375 bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-lg lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
+          <div className="mx-auto custom-container bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-lg lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
             <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
               <div className="max-w-xl py-2 md:px-0 md:py-0 lg:pb-10">
-                <h2 className="mt-4 font-serif text-5xl  leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-7xl">
+                <h2 className="mt-4 font-serif text-4xl leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-5xl">
                   Our Story
                 </h2>
                 <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
@@ -186,15 +198,15 @@ export default function Design2Page() {
 
       <section
         id="menu-section"
-        className="bg-[#121212] px-8 py-24 text-white md:px-16 md:py-40 lg:px-24"
+        className="bg-[#faf7ef] px-8 py-24 text-[#121212] md:px-16 md:py-40 lg:px-24"
       >
-        <Reveal className="mx-auto max-w-300" delay={80}>
+        <Reveal className="mx-auto custom-container" delay={80}>
           <div className="mb-20 flex items-end justify-between md:mb-28">
             <div>
               <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-stone-500 md:text-xs">
                 Full Menu
               </p>
-              <h2 className="font-serif text-4xl leading-tight text-stone-100 md:text-6xl">
+              <h2 className="font-serif text-3xl leading-tight text-stone-900 md:text-4xl">
                 What We Serve
               </h2>
             </div>
@@ -207,7 +219,7 @@ export default function Design2Page() {
           <div className="grid gap-16 lg:grid-cols-3 lg:gap-20">
             {menuCategories.map((category) => (
               <div key={category.title}>
-                <h3 className="mb-2 font-serif text-2xl text-stone-100 md:text-3xl">
+                <h3 className="mb-2 font-serif text-2xl text-stone-900 md:text-3xl">
                   {category.title}
                 </h3>
                 <p className="mb-10 text-xs tracking-[0.15em] text-stone-500">
@@ -217,9 +229,9 @@ export default function Design2Page() {
                   {category.items.map((item) => (
                     <div
                       key={item.name}
-                      className="group flex items-baseline justify-between border-b border-stone-800/50 pb-5 transition-colors duration-300 hover:border-stone-500"
+                      className="group flex items-baseline justify-between border-b border-stone-300 pb-5 transition-colors duration-300 hover:border-stone-500"
                     >
-                      <span className="text-base text-stone-200 transition-colors group-hover:text-white md:text-lg">
+                      <span className="text-base text-stone-800 transition-colors group-hover:text-black md:text-lg">
                         {item.name}
                       </span>
                       <span className="font-mono text-sm tracking-widest text-stone-500">
@@ -236,14 +248,14 @@ export default function Design2Page() {
 
       <section className="px-8 py-24 md:px-16 md:py-40 lg:px-24">
         <Reveal
-          className="mx-auto grid max-w-300 gap-16 lg:grid-cols-2 lg:gap-24"
+          className="mx-auto grid custom-container gap-16 lg:grid-cols-2 lg:gap-24"
           delay={80}
         >
           <div>
             <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-stone-400 md:text-xs">
               Visit
             </p>
-            <h2 className="mb-8 font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
+            <h2 className="mb-8 font-serif text-3xl leading-tight text-stone-900 md:text-4xl">
               Hours &<br />
               Location
             </h2>

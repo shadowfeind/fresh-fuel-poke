@@ -211,3 +211,8 @@ button {
     animation: none;
   }
 }
+
+.custom-container {
+  max-width: 1500px;
+  width: 100%;
+}
