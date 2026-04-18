@@ -94,9 +94,20 @@ export function SiteFooter() {
                 Location
               </p>
               <p className="mt-2 text-sm leading-7 text-stone-300">
-                Central, Hong Kong
+                G/F, 19 Amoy Street, Wanchai
                 <br />
-                Dine-in · Takeaway · Delivery
+                Hong Kong
+              </p>
+            </div>
+            <div className="h-px bg-stone-800" />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
+                Contact
+              </p>
+              <p className="mt-2 text-sm leading-7 text-stone-300">
+                Tel: 2345 6786
+                <br />
+                WhatsApp: 5674 6533
               </p>
             </div>
             <div className="h-px bg-stone-800" />
@@ -105,9 +116,11 @@ export function SiteFooter() {
                 Hours
               </p>
               <p className="mt-2 text-sm leading-7 text-stone-300">
-                Mon - Thu: 11:00 - 21:30
+                SUN - MON
                 <br />
-                Fri - Sun: 10:30 - 22:30
+                10:00 am - 4:00 pm (Dine-in)
+                <br />
+                10:00 am - 4:00 pm (Pickup/Delivery)
               </p>
             </div>
           </div>

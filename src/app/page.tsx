@@ -6,66 +6,87 @@ import { SiteHeader } from "@/components/restaurant/site-header";
 
 const floatingHighlights = [
   {
-    title: "Meal Set",
-    image: "/photos/Meal%20Set.png",
-    note: "Fast, photogenic, and easy to share.",
-    accent: "Set",
+    title: "Precision Prep",
+    image: "/photos/our-story-1.jpg",
+    note: "Ingredients are carefully weighed to guarantee perfect nutritional balance.",
+    accent: "Balance",
     size: "small",
   },
   {
-    title: "Bliss",
-    image: "/photos/Bliss.png",
-    note: "The bowl that anchors the whole visual identity.",
-    accent: "Signature",
+    title: "Expert Cuts",
+    image: "/photos/our-story-2.jpg",
+    note: "Sized and sliced with intention to deliver the ultimate texture in every bite.",
+    accent: "Texture",
     size: "large",
   },
   {
-    title: "Low Calorie",
-    image: "/photos/Low%20Calories.png",
-    note: "Lighter profile, still bright enough to stand out.",
-    accent: "Favorite",
+    title: "Peak Freshness",
+    image: "/photos/our-story-3.jpg",
+    note: "Preserved and stored in optimal conditions so every bowl stays crisp and bold.",
+    accent: "Quality",
     size: "medium",
   },
 ] as const;
 
 const menuCategories = [
   {
-    title: "Starters",
-    note: "Small plates to open.",
-    items: [
-      { name: "Kimchi Slaw", price: "8" },
-      { name: "Ginger Cucumber Cup", price: "7" },
-      { name: "Seaweed Salad", price: "9" },
-    ],
-  },
-  {
     title: "Signature Bowls",
     note: "House bowls built for balance.",
     items: [
-      { name: "Bliss", price: "24" },
-      { name: "Low Calorie", price: "22" },
-      { name: "Cardio Crunch", price: "23" },
-      { name: "Fuel Up Energy", price: "26" },
-      { name: "Gut Guardian", price: "25" },
-      { name: "Neuro Fuel", price: "27" },
+      { name: "Bliss", price: "" },
+      { name: "Low Calorie", price: "" },
+      { name: "Cardio Crunch", price: "" },
+      { name: "Fuel up Energy", price: "" },
+      { name: "Gut Guardian", price: "" },
+      { name: "Neuro Fuel", price: "" },
+      { name: "Muscle Recovery", price: "" },
+      { name: "Immunity Booster", price: "" },
+    ],
+  },
+  {
+    title: "Add On Side Dish",
+    note: "Extra protein, fresh mix-ins, and classic sides.",
+    items: [
+      { name: "Tofu", price: "" },
+      { name: "Apple Pineapple Mix", price: "" },
+      { name: "Salmon Fillet", price: "" },
+      { name: "Avocado", price: "" },
+      { name: "Chicken Breast", price: "" },
+      { name: "Kimchi", price: "" },
     ],
   },
   {
     title: "Drinks",
     note: "Fresh mixes and house blends.",
     items: [
-      { name: "Honey Lime", price: "6" },
-      { name: "Apple & Pineapple Mix", price: "7" },
-      { name: "Turmeric Coco", price: "7" },
+      { name: "12.8 Plum Soda", price: "" },
+      { name: "Classic", price: "" },
+      { name: "Spicy Flush", price: "" },
+      { name: "Coconut Water", price: "" },
+      { name: "Cold Brew", price: "" },
+      { name: "Metabolism Booster", price: "" },
+      { name: "Matchaka Coconut", price: "" },
+      { name: "Aqua Panna Still water", price: "" },
+      { name: "S. Pellegrino Sparkling Water", price: "" },
+      { name: "Homemade Lemonade", price: "" },
+    ],
+  },
+  {
+    title: "Sauce Options",
+    note: "Our house-made dressings.",
+    items: [
+      { name: "Ginger Miso", price: "" },
+      { name: "Honey Lime", price: "" },
+      { name: "Ponzu Tajin", price: "" },
+      { name: "Turmeric", price: "" },
+      { name: "Coco", price: "" },
     ],
   },
 ] as const;
 
 const hours = [
-  { label: "Mon — Thu", value: "11:00 — 21:30" },
-  { label: "Friday", value: "11:00 — 22:30" },
-  { label: "Saturday", value: "10:30 — 22:30" },
-  { label: "Sunday", value: "10:30 — 21:00" },
+  { label: "SUN - MON", value: "10:00 am - 4:00 pm (Dine-in)" },
+  { label: "SUN - MON", value: "10:00 am - 4:00 pm (Pickup or Delivery)" },
 ] as const;
 
 const heroSlides = [
@@ -82,8 +103,8 @@ const heroSlides = [
     src: "/photos/Banner2.jpg",
     alt: "Fresh Fuel Poke preparation scene",
     label: "Fresh energy",
-    title: ["Fresh", "Prep"] as const,
-    accent: "Fuel your purpose. Eat with intention",
+    title: ["Fuel your purpose"] as const,
+    accent: "Eat with intention",
     description:
       "Crisp veg, clean proteins, and bright sauces prepped fast so your bowl stays bold.",
   },
@@ -162,21 +183,13 @@ export default function Design2Page() {
                           alt={item.title}
                           fill
                           sizes="(max-width: 1024px) 100vw, 28vw"
-                          className="object-contain p-5 transition duration-500 hover:scale-105"
+                          className="object-cover transition duration-500 hover:scale-105"
                         />
                       </div>
-                      <div className="mt-4 flex items-center justify-between gap-4">
-                        <div>
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-400">
-                            {item.accent}
-                          </p>
-                          <h3 className="mt-2 font-serif text-2xl text-stone-950">
-                            {item.title}
-                          </h3>
-                        </div>
-                        <span className="text-[10px] uppercase tracking-[0.25em] text-(--brand-red)">
-                          Fresh Fuel
-                        </span>
+                      <div className="mt-4">
+                        <h3 className="font-serif text-2xl text-stone-950">
+                          {item.title}
+                        </h3>
                       </div>
                       <p className="mt-3 text-sm leading-7 tracking-[0.06em] text-stone-500">
                         {item.note}
@@ -216,7 +229,7 @@ export default function Design2Page() {
             </p>
           </div>
 
-          <div className="grid gap-16 lg:grid-cols-3 lg:gap-20">
+          <div className="grid gap-16 md:grid-cols-3 lg:grid-cols-4 lg:gap-20">
             {menuCategories.map((category) => (
               <div key={category.title}>
                 <h3 className="mb-2 font-serif text-2xl text-stone-900 md:text-3xl">
@@ -234,9 +247,11 @@ export default function Design2Page() {
                       <span className="text-base text-stone-800 transition-colors group-hover:text-black md:text-lg">
                         {item.name}
                       </span>
-                      <span className="font-mono text-sm tracking-widest text-stone-500">
-                        {item.price}
-                      </span>
+                      {item.price && (
+                        <span className="font-mono text-sm tracking-widest text-stone-500">
+                          {item.price}
+                        </span>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -260,14 +275,13 @@ export default function Design2Page() {
               Location
             </h2>
             <p className="mb-12 max-w-md text-sm leading-relaxed tracking-wide text-stone-500 md:text-base">
-              Walk in, call ahead, or order for delivery. We seat on a
-              first-come basis for parties under four.
+              Walk-in, call ahead, or order for delivery. We also arrange for party take away service on prior booking.
             </p>
 
             <div className="space-y-4">
-              {hours.map((hour) => (
+              {hours.map((hour, index) => (
                 <div
-                  key={hour.label}
+                  key={index}
                   className="flex items-baseline justify-between border-b border-stone-200 pb-4"
                 >
                   <span className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
@@ -279,27 +293,47 @@ export default function Design2Page() {
                 </div>
               ))}
             </div>
+
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <div className="flex items-start gap-4 rounded-lg border border-stone-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.04)] transition-transform duration-300 hover:-translate-y-1">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f4f5f1] text-stone-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Location</p>
+                  <p className="text-sm font-medium leading-relaxed tracking-wide text-stone-800">
+                    G/F, 19 Amoy Street<br />Wanchai, Hong Kong
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 rounded-lg border border-stone-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.04)] transition-transform duration-300 hover:-translate-y-1">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f4f5f1] text-stone-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Contact</p>
+                  <p className="text-sm font-medium leading-relaxed tracking-wide text-stone-800">
+                    Tel: 2345 6786<br />
+                    WhatsApp: 5674 6533
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="relative aspect-4/5 overflow-hidden bg-stone-100">
-              <Image
-                src="/photos/Banner2.jpg"
-                alt="Inside Fresh Fuel Poke"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+          <div className="relative h-full min-h-[400px] lg:min-h-[500px]">
+            <div className="relative h-full w-full overflow-hidden rounded-xl bg-stone-100 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <iframe
+                title="Fresh Fuel Poke Location Map"
+                width="100%"
+                height="100%"
+                className="absolute inset-0 border-0"
+                src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q=19%20Amoy%20Street,%20Wanchai,%20Hong%20Kong&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
-            </div>
-            <div className="mt-6">
-              <p className="mb-2 text-xs uppercase tracking-[0.2em] text-stone-400">
-                Address
-              </p>
-              <p className="text-sm leading-relaxed tracking-wide text-stone-700 md:text-base">
-                Central, Hong Kong
-                <br />
-                Dine-in · Takeaway · Delivery
-              </p>
             </div>
           </div>
         </Reveal>
