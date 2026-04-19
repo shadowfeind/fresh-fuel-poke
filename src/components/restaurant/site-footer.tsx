@@ -3,7 +3,7 @@ import { Reveal } from "./reveal";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-stone-800 bg-[#121212] px-8 py-16 text-white md:px-16 lg:px-24">
+    <footer className="border-t border-stone-800 bg-[#121212] px-8 pt-16 text-white md:px-16 lg:px-24">
       <Reveal
         className="mx-auto grid custom-container gap-12 lg:grid-cols-[1.15fr_0.65fr_0.85fr_0.95fr] lg:items-start"
         delay={80}
@@ -21,42 +21,6 @@ export function SiteFooter() {
             takeaway, and delivery in Central.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              type="button"
-              aria-label="Instagram"
-              className="flex items-center gap-3 rounded-md border border-stone-700 bg-stone-900 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-white transition hover:border-white hover:bg-white hover:text-stone-950"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.9"
-              >
-                <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
-                <circle cx="12" cy="12" r="4.1" />
-                <circle cx="17.4" cy="6.7" r="1" fill="currentColor" />
-              </svg>
-              Instagram
-            </button>
-            <button
-              type="button"
-              aria-label="Facebook"
-              className="flex items-center gap-3 rounded-md border border-stone-700 bg-stone-900 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.24em] text-white transition hover:border-white hover:bg-white hover:text-stone-950"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-4 w-4"
-                fill="currentColor"
-              >
-                <path d="M13.5 21v-8.1h2.7l.4-3.2h-3.1V7.66c0-.93.25-1.56 1.58-1.56H16.7V3.24c-.3-.04-1.3-.12-2.47-.12-2.45 0-4.13 1.49-4.13 4.24v2.36H7.3v3.2h2.8V21h3.4Z" />
-              </svg>
-              Facebook
-            </button>
-          </div>
         </div>
 
         <nav aria-label="Footer" className="lg:pt-2">
@@ -86,43 +50,70 @@ export function SiteFooter() {
 
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-stone-500">
-            Visit
+            Our Socials
           </p>
-          <div className="mt-5 space-y-4 rounded-lg border border-stone-800 bg-stone-900 p-6">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
-                Location
-              </p>
-              <p className="mt-2 text-sm leading-7 text-stone-300">
-                G/F, 19 Amoy Street, Wanchai
-                <br />
-                Hong Kong
-              </p>
-            </div>
-            <div className="h-px bg-stone-800" />
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
-                Contact
-              </p>
-              <p className="mt-2 text-sm leading-7 text-stone-300">
-                Tel: 2345 6786
-                <br />
-                WhatsApp: 5674 6533
-              </p>
-            </div>
-            <div className="h-px bg-stone-800" />
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">
-                Hours
-              </p>
-              <p className="mt-2 text-sm leading-7 text-stone-300">
-                SUN - MON
-                <br />
-                10:00 am - 4:00 pm (Dine-in)
-                <br />
-                10:00 am - 4:00 pm (Pickup/Delivery)
-              </p>
-            </div>
+          <div className="mt-5 flex items-center gap-3">
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-stone-700 bg-stone-900 text-stone-300 transition hover:border-white hover:bg-white hover:text-stone-950"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.9"
+              >
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                <circle cx="12" cy="12" r="4.1" />
+                <circle cx="17.4" cy="6.7" r="1" fill="currentColor" />
+              </svg>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-stone-700 bg-stone-900 text-stone-300 transition hover:border-white hover:bg-white hover:text-stone-950"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px]"
+                fill="currentColor"
+              >
+                <path d="M13.5 21v-8.1h2.7l.4-3.2h-3.1V7.66c0-.93.25-1.56 1.58-1.56H16.7V3.24c-.3-.04-1.3-.12-2.47-.12-2.45 0-4.13 1.49-4.13 4.24v2.36H7.3v3.2h2.8V21h3.4Z" />
+              </svg>
+            </a>
+            <a
+              href="#"
+              aria-label="TikTok"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-stone-700 bg-stone-900 text-stone-300 transition hover:border-white hover:bg-white hover:text-stone-950"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px]"
+                fill="currentColor"
+              >
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.8.1V9.01a6.27 6.27 0 00-.8-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.18 8.18 0 004.77 1.52V6.84a4.84 4.84 0 01-1-.15z" />
+              </svg>
+            </a>
+            <a
+              href="#"
+              aria-label="WhatsApp"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-stone-700 bg-stone-900 text-stone-300 transition hover:border-white hover:bg-white hover:text-stone-950"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px]"
+                fill="currentColor"
+              >
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M12.05 2C6.532 2 2.05 6.478 2.05 11.993c0 1.762.46 3.478 1.333 4.992L2 22l5.233-1.237a9.87 9.87 0 004.817 1.23C17.568 21.993 22.05 17.515 22.05 12.001 22.05 6.487 17.565 2 12.05 2zm0 18.054a8.11 8.11 0 01-4.417-1.3l-.316-.188-3.286.862.877-3.202-.206-.328A8.07 8.07 0 013.99 12c0-4.46 3.627-8.085 8.06-8.085 4.434 0 8.062 3.625 8.062 8.085 0 4.46-3.628 8.054-8.062 8.054z" />
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -156,14 +147,13 @@ export function SiteFooter() {
         </div>
       </Reveal>
 
-      <Reveal
-        className="mx-auto mt-12 custom-container border-t border-stone-800 pt-6"
-        delay={160}
+      <div
+        className="mx-auto mt-12 custom-container border-t border-stone-800 py-8"
       >
         <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
           © Copyright Freshfuelpoke 2026
         </p>
-      </Reveal>
+      </div>
     </footer>
   );
 }

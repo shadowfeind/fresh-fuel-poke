@@ -127,8 +127,7 @@ export function HeroCarousel({
 
           {/* Navigation Dots Overlay */}
           <div className="col-start-1 row-start-1 pointer-events-none flex flex-col justify-end">
-            <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between">
-              <div className="flex-1" />
+            <div className="mt-12 flex justify-center md:mt-16">
               <div className="pointer-events-auto flex items-center gap-3">
                 {slides.map((slide, index) => (
                   <button
@@ -149,9 +148,6 @@ export function HeroCarousel({
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2">
-        <div className="h-12 w-px bg-white/30" />
-      </div>
     </section>
   );
 }
