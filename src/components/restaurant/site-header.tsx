@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { startTransition, useEffect, useEffectEvent, useState } from "react";
 import { RestaurantLogo } from "./common";
 
@@ -75,14 +76,14 @@ export function SiteHeader({
             Menu
           </button>
 
-          <a href="#top" aria-label="Fresh Fuel Poke home">
+          <Link href="/" aria-label="Fresh Fuel Poke home">
             <RestaurantLogo
               className={`transition-all duration-300 ${
                 isScrolled ? "w-16 md:w-20" : "w-20 md:w-24"
               }`}
               priority
             />
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -140,6 +141,7 @@ export function SiteHeader({
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"
+                aria-hidden="true"
               >
                 <path d="M6 6l12 12M18 6L6 18" />
               </svg>
@@ -178,13 +180,13 @@ export function SiteHeader({
           </div>
 
           <div className="mt-10 flex flex-wrap gap-3 border-t border-stone-200 pt-6">
-            <a
+            <Link
               href="#menu-section"
               onClick={closeDrawer}
               className="rounded-md border border-stone-300 bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-[0.28em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
             >
               Full Menu
-            </a>
+            </Link>
             <button
               type="button"
               disabled

@@ -211,52 +211,53 @@ export default function Design2Page() {
 
       <section
         id="menu-section"
-        className="bg-[#faf7ef] px-8 py-24 text-[#121212] md:px-16 md:py-40 lg:px-24"
+        className="bg-[#faf7ef] px-8 py-0 text-white md:px-16 lg:px-24"
       >
         <Reveal className="mx-auto custom-container" delay={80}>
-          <div className="mb-20 flex items-end justify-between md:mb-28">
-            <div>
-              <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-stone-500 md:text-xs">
-                Full Menu
-              </p>
-              <h2 className="font-serif text-3xl leading-tight text-stone-900 md:text-4xl">
-                What We Serve
-              </h2>
-            </div>
-            <p className="hidden max-w-xs text-right text-xs leading-relaxed tracking-[0.15em] text-stone-500 md:block">
-              Each dish is assembled to order. Allergen notes available on
-              request.
-            </p>
-          </div>
+          <div className="relative isolate overflow-hidden bg-[#392d1e] min-[1440px]:aspect-[2.11/1]">
+            <Image
+              src="/photos/Menu backgorund.jpg"
+              alt="Fresh Fuel Poke menu background"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1400px) 86vw, 1200px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[rgba(44,29,10,0.54)]" />
 
-          <div className="grid gap-16 md:grid-cols-3 lg:grid-cols-4 lg:gap-20">
-            {menuCategories.map((category) => (
-              <div key={category.title}>
-                <h3 className="mb-2 font-serif text-2xl text-stone-900 md:text-3xl">
-                  {category.title}
-                </h3>
-                <p className="mb-10 text-xs tracking-[0.15em] text-stone-500">
-                  {category.note}
+            <div className="relative z-10 px-7 py-14 sm:px-10 sm:py-16 md:px-16 md:py-18 lg:px-24 lg:py-20">
+              <div className="max-w-[860px]">
+                <p className="text-[1.3rem] font-semibold tracking-[-0.01em] text-white md:text-[1.55rem]">
+                  What we serve,
                 </p>
-                <div className="space-y-6">
-                  {category.items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="group flex items-baseline justify-between border-b border-stone-300 pb-5 transition-colors duration-300 hover:border-stone-500"
-                    >
-                      <span className="text-base text-stone-800 transition-colors group-hover:text-black md:text-lg">
-                        {item.name}
-                      </span>
-                      {item.price && (
-                        <span className="font-mono text-sm tracking-widest text-stone-500">
-                          {item.price}
-                        </span>
-                      )}
+
+                <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+                  {menuCategories.slice(0, 3).map((category) => (
+                    <div key={category.title}>
+                      <h3 className="border-b border-white/55 pb-2 text-[1.25rem] font-semibold leading-none text-white md:text-[1.55rem]">
+                        {category.title}
+                      </h3>
+                      <ul className="space-y-2.5 pt-5 md:space-y-2">
+                        {category.items.map((item) => (
+                          <li
+                            key={item.name}
+                            className="text-[1.18rem] font-semibold leading-[1.1] text-white md:text-[1.32rem]"
+                          >
+                            {item.name}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+
+              <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-[1.1rem] font-semibold leading-none text-white md:mt-20 md:gap-x-10 md:text-[1.22rem]">
+                <span>Sauce Option: Ginger Miso</span>
+                {menuCategories[3].items.map((item) => (
+                  <span key={item.name}>{item.name}</span>
+                ))}
+              </div>
+            </div>
           </div>
         </Reveal>
       </section>
@@ -275,13 +276,14 @@ export default function Design2Page() {
               Location
             </h2>
             <p className="mb-12 max-w-md text-sm leading-relaxed tracking-wide text-stone-500 md:text-base">
-              Walk-in, call ahead, or order for delivery. We also arrange for party take away service on prior booking.
+              Walk-in, call ahead, or order for delivery. We also arrange for
+              party take away service on prior booking.
             </p>
 
             <div className="space-y-4">
-              {hours.map((hour, index) => (
+              {hours.map((hour) => (
                 <div
-                  key={index}
+                  key={`${hour.label}-${hour.value}`}
                   className="flex items-baseline justify-between border-b border-stone-200 pb-4"
                 >
                   <span className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
@@ -297,24 +299,58 @@ export default function Design2Page() {
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <div className="flex items-start gap-4 rounded-lg border border-stone-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.04)] transition-transform duration-300 hover:-translate-y-1">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f4f5f1] text-stone-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
                 </div>
                 <div>
-                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Location</p>
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">
+                    Location
+                  </p>
                   <p className="text-sm font-medium leading-relaxed tracking-wide text-stone-800">
-                    G/F, 19 Amoy Street<br />Wanchai, Hong Kong
+                    G/F, 19 Amoy Street
+                    <br />
+                    Wanchai, Hong Kong
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 rounded-lg border border-stone-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.04)] transition-transform duration-300 hover:-translate-y-1">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f4f5f1] text-stone-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
                 </div>
                 <div>
-                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Contact</p>
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">
+                    Contact
+                  </p>
                   <p className="text-sm font-medium leading-relaxed tracking-wide text-stone-800">
-                    Tel: 2345 6786<br />
+                    Tel: 2345 6786
+                    <br />
                     WhatsApp: 5674 6533
                   </p>
                 </div>
