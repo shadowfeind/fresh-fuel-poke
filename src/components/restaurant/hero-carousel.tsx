@@ -76,75 +76,113 @@ export function HeroCarousel({
         ))}
       </div>
 
-      <div className="relative z-10 w-full px-8 pb-16 md:px-16 md:pb-24 lg:px-24">
-        <div className="mx-auto custom-container grid items-end">
-          <div className="col-start-1 row-start-1 w-fit">
-            <div className="grid rounded-2xl bg-black/30 p-6 backdrop-blur-md md:p-10">
-              {slides.map((slide, index) => {
-                const slideTitle = slide.title ?? title;
-                const slideAccent = slide.accent ?? accent;
-                const slideDescription = slide.description ?? description;
-                const slideLabel = slide.label ?? eyebrow;
+      <div className="relative z-10 w-full px-8 pb-10 md:px-12 md:pb-16 lg:px-12">
+        <div className="mx-auto flex w-full flex-col items-center justify-center gap-8 md:flex-row md:items-end md:gap-0">
+          
+          {/* Main Layout Layer (Desktop) */}
+          <div className="hidden w-full md:flex md:items-end">
+            {/* Left Side: Content (Stretches to center) */}
+            <div className="flex-1">
+              <div className="rounded-lg bg-black/30 px-10 py-8 lg:px-14 lg:py-10 mr-2 lg:mr-6">
+                {slides.map((slide, index) => {
+                  const slideTitle = slide.title ?? title;
+                  const slideAccent = slide.accent ?? accent;
 
-                return (
-                  <div
-                    key={`text-${slide.src}`}
-                    className={`col-start-1 row-start-1 transform-gpu transition-all duration-1000 ease-out will-change-[opacity,transform] ${
-                      index === activeIndex
-                        ? "translate-y-0 opacity-100"
-                        : "pointer-events-none translate-y-8 opacity-0"
-                    }`}
-                  >
-                    <p className="mb-4 text-[7px] uppercase tracking-[0.34em] text-(--lime) md:text-[9px]">
-                      {slideLabel}
-                    </p>
-                    <h1 className="text-white">
-                      <span className="block text-4xl font-black uppercase leading-[0.86] tracking-[-0.05em] md:text-5xl lg:text-[5.5rem]">
-                        {slideTitle.join(" ")}
-                      </span>
-                      <span className="mt-2 block font-serif text-3xl italic font-light leading-[0.92] tracking-[-0.04em] text-white/78 md:text-4xl lg:text-[4rem]">
-                        {slideAccent}
-                      </span>
-                    </h1>
-                    <p className="mt-6 max-w-md text-sm tracking-[0.12em] text-white/90 md:text-base">
-                      {slideDescription}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between">
-              <div className="flex-1" />
-              {/* Invisible spacer to maintain layout matching the dots */}
-              <div className="invisible flex h-2.5 items-center gap-3" aria-hidden="true">
-                {slides.map((_, i) => (
-                  <div key={i} className="h-2.5 w-2.5" />
-                ))}
+                  return (
+                    <div
+                      key={`text-desktop-${slide.src}`}
+                      className={`col-start-1 row-start-1 transform-gpu transition-all duration-1000 ease-out will-change-[opacity,transform] ${
+                        index === activeIndex
+                          ? "translate-y-0 opacity-100"
+                          : "absolute inset-0 pointer-events-none translate-y-8 opacity-0"
+                      }`}
+                    >
+                      <h1 className="text-white text-left">
+                        <span 
+                          className="block font-black uppercase leading-[0.86] tracking-[-0.05em]"
+                          style={{ fontSize: "clamp(2rem, 4.5vw, 7.5rem)" }}
+                        >
+                          {slideTitle.join(" ")}
+                        </span>
+                        <span 
+                          className="mt-1 block font-serif italic font-light leading-[1.2] tracking-normal text-white/95"
+                          style={{ fontSize: "clamp(1.1rem, 2.2vw, 3.8rem)" }}
+                        >
+                          {slideAccent}
+                        </span>
+                      </h1>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          </div>
 
-          {/* Navigation Dots Overlay */}
-          <div className="col-start-1 row-start-1 pointer-events-none flex flex-col justify-end">
-            <div className="mt-12 flex justify-center md:mt-16">
-              <div className="pointer-events-auto flex items-center gap-3">
+            {/* Center: Dots (Shrink-to-fit) */}
+            <div className="flex shrink-0 items-center justify-center pb-10 lg:pb-14">
+               <div className="flex items-center gap-3">
                 {slides.map((slide, index) => (
                   <button
-                    key={`dot-${slide.src}`}
+                    key={`dot-desktop-${slide.src}`}
                     type="button"
                     onClick={() => setSlide(index)}
                     aria-label={`Show slide ${index + 1}`}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
                       index === activeIndex
-                        ? "w-8 bg-white"
-                        : "w-2.5 bg-white/40 hover:bg-white/70"
+                        ? "w-10 bg-white"
+                        : "w-4 bg-white/30 hover:bg-white/60"
                     }`}
                   />
                 ))}
               </div>
             </div>
+
+            {/* Right Side: Empty Spacer (Keeps dots centered) */}
+            <div className="flex-1 hidden md:block" />
           </div>
+
+          {/* Mobile Layout (Stacked Centered) */}
+          <div className="flex flex-col items-center gap-8 md:hidden">
+            <div className="rounded-lg bg-black/30 px-6 py-5 backdrop-blur-sm">
+              {slides.map((slide, index) => {
+                const slideTitle = slide.title ?? title;
+                const slideAccent = slide.accent ?? accent;
+
+                return (
+                  <div
+                    key={`text-mobile-${slide.src}`}
+                    className={`col-start-1 row-start-1 transform-gpu transition-all duration-1000 ease-out will-change-[opacity,transform] ${
+                      index === activeIndex
+                        ? "translate-y-0 opacity-100"
+                        : "absolute inset-0 pointer-events-none translate-y-8 opacity-0"
+                    }`}
+                  >
+                    <h1 className="text-white text-center">
+                      <span className="block text-3xl font-black uppercase leading-[0.86] tracking-[-0.05em]">
+                        {slideTitle.join(" ")}
+                      </span>
+                      <span className="mt-1 block font-serif text-lg italic font-light leading-[1.2] text-white/95">
+                        {slideAccent}
+                      </span>
+                    </h1>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-2">
+              {slides.map((slide, index) => (
+                <button
+                  key={`dot-mobile-${slide.src}`}
+                  type="button"
+                  onClick={() => setSlide(index)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    index === activeIndex ? "w-8 bg-white" : "w-4 bg-white/30"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
 

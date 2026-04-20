@@ -11,6 +11,7 @@ const floatingHighlights = [
     note: "Ingredients are carefully weighed to guarantee perfect nutritional balance.",
     accent: "Balance",
     size: "small",
+    position: "right center",
   },
   {
     title: "Expert Cuts",
@@ -33,8 +34,7 @@ const menuCategories = [
     title: "Signature Bowls",
     note: "House bowls built for balance.",
     items: [
-      { name: "Bliss", price: "" },
-      { name: "Low Calorie", price: "" },
+      { name: "Signature Bowl", price: "" },
       { name: "Cardio Crunch", price: "" },
       { name: "Fuel up Energy", price: "" },
       { name: "Gut Guardian", price: "" },
@@ -184,6 +184,9 @@ export default function Design2Page() {
                           fill
                           sizes="(max-width: 1024px) 100vw, 28vw"
                           className="object-cover transition duration-500 hover:scale-105"
+                          style={{
+                            objectPosition: (item as any).position || "center",
+                          }}
                         />
                       </div>
                       <div className="mt-4">
@@ -203,7 +206,7 @@ export default function Design2Page() {
         </Reveal>
       </section>
 
-      <section className="border-y border-stone-200 py-20 md:py-28">
+      <section className="border-t border-stone-200 py-20 md:py-28">
         <Reveal delay={80}>
           <BowlCarousel />
         </Reveal>
@@ -211,50 +214,34 @@ export default function Design2Page() {
 
       <section
         id="menu-section"
-        className="bg-[#faf7ef] px-8 py-0 text-white md:px-16 lg:px-24"
+        className="what-we-serve-section"
       >
-        <Reveal className="mx-auto custom-container" delay={80}>
-          <div className="relative isolate overflow-hidden bg-[#392d1e] min-[1440px]:aspect-[2.11/1]">
+        <Reveal delay={80}>
+          <div className="what-we-serve-wrapper">
             <Image
-              src="/photos/Menu backgorund.jpg"
-              alt="Fresh Fuel Poke menu background"
+              src="/photos/banner.jpg"
+              alt="Fresh Fuel Poke bowls"
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1400px) 86vw, 1200px"
+              sizes="100vw"
               className="object-cover"
+              priority
             />
-            <div className="absolute inset-0 bg-[rgba(44,29,10,0.54)]" />
 
-            <div className="relative z-10 px-7 py-14 sm:px-10 sm:py-16 md:px-16 md:py-18 lg:px-24 lg:py-20">
-              <div className="max-w-[860px]">
-                <p className="text-[1.3rem] font-semibold tracking-[-0.01em] text-white md:text-[1.55rem]">
-                  What we serve,
-                </p>
+            <div className="what-we-serve-overlay mx-auto custom-container">
+              <h2 className="what-we-serve-title">What We Serve</h2>
 
-                <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
-                  {menuCategories.slice(0, 3).map((category) => (
-                    <div key={category.title}>
-                      <h3 className="border-b border-white/55 pb-2 text-[1.25rem] font-semibold leading-none text-white md:text-[1.55rem]">
-                        {category.title}
-                      </h3>
-                      <ul className="space-y-2.5 pt-5 md:space-y-2">
-                        {category.items.map((item) => (
-                          <li
-                            key={item.name}
-                            className="text-[1.18rem] font-semibold leading-[1.1] text-white md:text-[1.32rem]"
-                          >
-                            {item.name}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-[1.1rem] font-semibold leading-none text-white md:mt-20 md:gap-x-10 md:text-[1.22rem]">
-                <span>Sauce Option: Ginger Miso</span>
-                {menuCategories[3].items.map((item) => (
-                  <span key={item.name}>{item.name}</span>
+              <div className="what-we-serve-grid">
+                {menuCategories.map((category) => (
+                  <div key={category.title} className="what-we-serve-column">
+                    <h3 className="what-we-serve-category">{category.title}</h3>
+                    <ul className="what-we-serve-list">
+                      {category.items.map((item) => (
+                        <li key={item.name} className="what-we-serve-item">
+                          {item.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
             </div>
