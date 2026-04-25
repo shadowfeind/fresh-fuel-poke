@@ -73,7 +73,8 @@ export function SiteFooter() {
                 width={170}
                 height={82}
                 priority={false}
-                className="h-auto w-[138px] md:w-[170px]"
+                className="w-[138px] md:w-[170px]"
+                style={{ height: "auto" }}
               />
             </Link>
           </div>
@@ -95,6 +96,8 @@ export function SiteFooter() {
                     alt={item.label}
                     width={item.width}
                     height={item.height}
+                    className={item.className}
+                    style={{ height: "auto" }}
                   />
                 </a>
               ))}
@@ -113,7 +116,8 @@ export function SiteFooter() {
                   alt={item.label}
                   width={item.width}
                   height={item.height}
-                  className={`h-auto ${item.className}`}
+                  className={item.className}
+                  style={{ height: "auto" }}
                 />
               ))}
             </div>

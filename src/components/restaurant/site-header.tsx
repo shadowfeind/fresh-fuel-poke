@@ -6,11 +6,11 @@ import { RestaurantLogo } from "./common";
 import { DishModal, type DishDetails } from "./dish-modal";
 
 type MenuCategory = {
-  title: string;
-  note: string;
-  items: readonly {
-    name: string;
-    price: string;
+  readonly title: string;
+  readonly note: string;
+  readonly items: readonly {
+    readonly name: string;
+    readonly price: string;
   }[];
 };
 

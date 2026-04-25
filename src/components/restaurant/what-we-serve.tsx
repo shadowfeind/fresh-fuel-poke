@@ -5,14 +5,14 @@ import { useState } from "react";
 import { DishModal, type DishDetails } from "./dish-modal";
 
 type MenuItem = {
-  name: string;
-  price?: string;
+  readonly name: string;
+  readonly price?: string;
 };
 
 type MenuCategory = {
-  title: string;
-  note?: string;
-  items: MenuItem[];
+  readonly title: string;
+  readonly note?: string;
+  readonly items: readonly MenuItem[];
 };
 
 export function WhatWeServe({ menuCategories }: { menuCategories: readonly MenuCategory[] }) {
