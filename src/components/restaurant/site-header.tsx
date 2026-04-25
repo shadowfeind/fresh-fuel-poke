@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { startTransition, useEffect, useEffectEvent, useState } from "react";
 import { RestaurantLogo } from "./common";
+import { DishModal, type DishDetails } from "./dish-modal";
 
 type MenuCategory = {
   title: string;
@@ -20,6 +21,16 @@ export function SiteHeader({
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDrawer, setActiveDrawer] = useState<"menu" | null>(null);
+  const [selectedItem, setSelectedItem] = useState<DishDetails | null>(null);
+
+  const handleItemClick = (item: { name: string; price: string }) => {
+    setSelectedItem({
+      name: item.name,
+      image: "/photos/Cardio%20Crunch.png",
+      description: "A freshly prepared dish made to order with our finest ingredients and signature bold flavors.",
+      subtitle: "Fresh & Healthy",
+    });
+  };
 
   const updateScrolled = useEffectEvent(() => {
     setIsScrolled(window.scrollY > 24);
@@ -56,6 +67,11 @@ export function SiteHeader({
 
   return (
     <>
+      <DishModal 
+        isOpen={selectedItem !== null} 
+        onClose={() => setSelectedItem(null)} 
+        bowl={selectedItem} 
+      />
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-16 lg:px-24">
         <div
           className={`mx-auto flex custom-container items-center justify-between rounded-lg border transition-all duration-300 ${
@@ -164,12 +180,13 @@ export function SiteHeader({
                   {category.items.map((item) => (
                     <div
                       key={item.name}
-                      className="flex items-baseline justify-between border-b border-stone-200/80 pb-3"
+                      className="flex items-baseline justify-between border-b border-stone-200/80 pb-3 cursor-pointer group"
+                      onClick={() => handleItemClick(item)}
                     >
-                      <span className="text-sm tracking-[0.08em] text-stone-700 md:text-base">
+                      <span className="text-sm tracking-[0.08em] text-stone-700 md:text-base group-hover:text-stone-950 transition-colors">
                         {item.name}
                       </span>
-                      <span className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
+                      <span className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 group-hover:text-stone-700 transition-colors">
                         {item.price}
                       </span>
                     </div>

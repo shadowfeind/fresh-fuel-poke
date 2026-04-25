@@ -3,6 +3,7 @@ import { BowlCarousel } from "@/components/design5/bowl-carousel";
 import { HeroCarousel } from "@/components/restaurant/hero-carousel";
 import { Reveal } from "@/components/restaurant/reveal";
 import { SiteHeader } from "@/components/restaurant/site-header";
+import { WhatWeServe } from "@/components/restaurant/what-we-serve";
 
 const floatingHighlights = [
   {
@@ -217,35 +218,7 @@ export default function Design2Page() {
         className="what-we-serve-section"
       >
         <Reveal delay={80}>
-          <div className="what-we-serve-wrapper">
-            <Image
-              src="/photos/banner.jpg"
-              alt="Fresh Fuel Poke bowls"
-              fill
-              sizes="100vw"
-              className="object-cover"
-              priority
-            />
-
-            <div className="what-we-serve-overlay mx-auto custom-container">
-              <h2 className="what-we-serve-title">What We Serve</h2>
-
-              <div className="what-we-serve-grid">
-                {menuCategories.map((category) => (
-                  <div key={category.title} className="what-we-serve-column">
-                    <h3 className="what-we-serve-category">{category.title}</h3>
-                    <ul className="what-we-serve-list">
-                      {category.items.map((item) => (
-                        <li key={item.name} className="what-we-serve-item">
-                          {item.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <WhatWeServe menuCategories={menuCategories} />
         </Reveal>
       </section>
 
