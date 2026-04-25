@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
+import { DishModal } from "@/components/restaurant/dish-modal";
 
 type Bowl = {
   name: string;
@@ -158,8 +159,15 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
   const displayIndex =
     ((activeIndex % bowls.length) + bowls.length) % bowls.length;
 
+  const [selectedBowl, setSelectedBowl] = useState<Bowl | null>(null);
+
   return (
     <div>
+      <DishModal 
+        isOpen={selectedBowl !== null} 
+        onClose={() => setSelectedBowl(null)} 
+        bowl={selectedBowl as any} 
+      />
       {/* Header */}
       <div className="w-full px-8 md:px-16 lg:px-24 mb-16">
         <div className="mx-auto custom-container flex items-end justify-between">
@@ -235,7 +243,8 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
             <article
               key={`${bowl.name}-${index}`}
               ref={index === 0 ? sampleCardRef : null}
-              className="group w-[85vw] shrink-0 sm:w-105 lg:w-120"
+              className="group w-[85vw] shrink-0 sm:w-105 lg:w-120 cursor-pointer"
+              onClick={() => setSelectedBowl(bowl)}
             >
               {/* Bowl image */}
               <div
