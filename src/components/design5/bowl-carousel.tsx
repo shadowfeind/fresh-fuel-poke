@@ -4,62 +4,142 @@ import Image from "next/image";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { DishModal } from "@/components/restaurant/dish-modal";
 
-type Bowl = {
+export type Bowl = {
   name: string;
   image: string;
   description: string;
+  ingredients: string;
+  nutrition: {
+    calories: string;
+    protein: string;
+    fats: string;
+    carbs: string;
+    vitC: string;
+  };
   price: string;
   tags: string[];
 };
 
-const bowls: Bowl[] = [
+export const bowls: Bowl[] = [
   {
     name: "Bliss",
     image: "/photos/Bliss.png",
-    description:
-      "Wild salmon, edamame, avocado, micro-greens, finished with a subtle citrus note.",
-    price: "24",
+    description: "Inflammation Control, Metabolic Support, Muscle Recovery",
+    ingredients: "Quinoa, Chicken, Spinach, Kale, Edamame, Carrot, Cucumber, Pineapple, Avocado, Sesame Seed, Ginger, Seaweed",
+    nutrition: {
+      calories: "565.04",
+      protein: "37.3",
+      fats: "23.44",
+      carbs: "46.72",
+      vitC: "56.46 MG"
+    },
+    price: "",
     tags: ["Best Seller", "Protein Forward"],
   },
   {
     name: "Low Calorie",
     image: "/photos/Low%20Calories.png",
-    description:
-      "Lean salmon over spinach, purple cabbage, ginger, sesame — clean and light.",
-    price: "22",
-    tags: ["Light", "Under 400 cal"],
+    description: "Big Portion, Low Calories, Satiety, Metabolism Booster",
+    ingredients: "Spinach, Salmon, Purple Cabbage, Cucumber, Ginger, Sesame Oil, Sesame Seed",
+    nutrition: {
+      calories: "340.53",
+      protein: "27.51",
+      fats: "22.4",
+      carbs: "13.64",
+      vitC: "73.25 mg"
+    },
+    price: "",
+    tags: ["Light", "Low Calorie"],
   },
   {
     name: "Cardio Crunch",
     image: "/photos/Cardio%20Crunch.png",
-    description:
-      "Crisp vegetables layered with bold dressing notes and satisfying crunch.",
-    price: "23",
+    description: "Colesterol Control, Clean Energy, Circulation Support",
+    ingredients: "Quinoa, Salmon, Broccoli, Avocado, Lemon, Dry Fruits, Flax Seed, Olive oil",
+    nutrition: {
+      calories: "533.41",
+      protein: "29.70",
+      fats: "30.41",
+      carbs: "35.21",
+      vitC: "51.67 MG"
+    },
+    price: "",
     tags: ["Crunchy", "Texture Rich"],
   },
   {
     name: "Fuel Up Energy",
     image: "/photos/Fuel%20Up%20Energy.png",
-    description:
-      "A fuller bowl for post-workout recovery with vibrant toppings and depth.",
-    price: "26",
+    description: "Instant Fuel, Sustained Power, Crash Protection",
+    ingredients: "Quinoa, Sweet Potato, Salmon, Avocado, Edamame, Cucumber, Purple Cabbage, Ginger, Wasabi, Sesame Seed",
+    nutrition: {
+      calories: "556.37",
+      protein: "34.36",
+      fats: "29.23",
+      carbs: "44.07",
+      vitC: "58.66 mg"
+    },
+    price: "",
     tags: ["Power Bowl", "Recovery"],
   },
   {
     name: "Gut Guardian",
     image: "/photos/Gut%20Guardian.png",
-    description:
-      "Fermented vegetables, miso, and prebiotic-rich ingredients for gut health.",
-    price: "25",
+    description: "Microbiome Support, Digestive Comfort, Complete Nutrition",
+    ingredients: "Quinoa, Tofu, Edamame, Kimchi, Cucumber, Carrot, Purple Cabbage",
+    nutrition: {
+      calories: "283.64",
+      protein: "17.06",
+      fats: "13.43",
+      carbs: "23.53",
+      vitC: "48.21 mg"
+    },
+    price: "",
     tags: ["Probiotic", "Gut Health"],
   },
   {
     name: "Neuro Fuel",
     image: "/photos/Neouro%20Fuel.png",
-    description:
-      "Omega-rich salmon, seeds, dark greens — built for focus and mental clarity.",
-    price: "27",
-    tags: ["Brain Food", "Omega-3"],
+    description: "Brain Power, Heart Protection, Focus Fuel",
+    ingredients: "Quinoa, Salmon, Avocado, Cucumber, Bell Pepper, Lollo Rosso, Almond, Sesame Oil",
+    nutrition: {
+      calories: "517.53",
+      protein: "28.10",
+      fats: "35.19",
+      carbs: "23.16",
+      vitC: "70.17 mg"
+    },
+    price: "",
+    tags: ["Brain Food", "Omega Rich"],
+  },
+  {
+    name: "Muscle Recovery",
+    image: "/photos/Muscle%20Recovery.png",
+    description: "Lean Protein, Inflammation Defense, Recovery Carb Blend",
+    ingredients: "Quinoa, Sweet Potato, Chicken, Broccoli, Purple Cabbage, Almond, Turmeric, Black Pepper, Olive oil",
+    nutrition: {
+      calories: "489.52",
+      protein: "30.63",
+      fats: "38.31",
+      carbs: "58.73",
+      vitC: "52.62"
+    },
+    price: "",
+    tags: ["High Protein", "Post-Workout"],
+  },
+  {
+    name: "Immunity Booster",
+    image: "/photos/Immunity%20Booster.png",
+    description: "Virus Shield, White Blood Cell Boost, Mucous Me, Brain Armor",
+    ingredients: "Quinoa, Salmon, Kale, Ginger, Carrot, Cilantro, Garlic, Sesame Seed",
+    nutrition: {
+      calories: "476.52",
+      protein: "29.36",
+      fats: "16.45",
+      carbs: "50.87",
+      vitC: "102.48 MG"
+    },
+    price: "",
+    tags: ["Immunity", "Superfoods"],
   },
 ];
 const loopedBowls = [...bowls, ...bowls, ...bowls];
@@ -243,7 +323,7 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
             <article
               key={`${bowl.name}-${index}`}
               ref={index === 0 ? sampleCardRef : null}
-              className="group w-[85vw] shrink-0 sm:w-105 lg:w-120 cursor-pointer"
+              className="group w-[85vw] shrink-0 sm:w-105 lg:w-96 cursor-pointer"
               onClick={() => setSelectedBowl(bowl)}
             >
               {/* Bowl image */}
@@ -255,7 +335,7 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
                   alt={bowl.name}
                   fill
                   sizes="(max-width: 640px) 85vw, (max-width: 1024px) 420px, 480px"
-                  className="object-contain p-8 transition-transform duration-700 group-hover:scale-105"
+                  className="object-contain p-16 transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
@@ -272,17 +352,12 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
               </div>
 
               {/* Details */}
-              <div className="flex justify-between items-baseline mb-4">
+              <div className="mb-4">
                 <h3
                   className={`font-serif text-2xl md:text-3xl ${headingClass}`}
                 >
                   {bowl.name}
                 </h3>
-                <span
-                  className={`font-mono text-sm tracking-widest ${priceClass}`}
-                >
-                  {bowl.price}
-                </span>
               </div>
 
               <p
@@ -308,12 +383,12 @@ export function BowlCarousel({ tone = "light" }: { tone?: "light" | "dark" }) {
             <span
               className={`font-mono text-[10px] tracking-widest ${priceClass}`}
             >
-              {String(displayIndex + 1).padStart(2, "0")}
+              Previous
             </span>
             <span
               className={`font-mono text-[10px] tracking-widest ${priceClass}`}
             >
-              {String(bowls.length).padStart(2, "0")}
+              Next
             </span>
           </div>
         </div>

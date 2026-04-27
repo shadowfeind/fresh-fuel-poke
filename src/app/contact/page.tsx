@@ -1,42 +1,13 @@
 import Image from "next/image";
-import { BowlCarousel } from "@/components/design5/bowl-carousel";
-import { HeroCarousel } from "@/components/restaurant/hero-carousel";
 import { Reveal } from "@/components/restaurant/reveal";
 import { SiteHeader } from "@/components/restaurant/site-header";
-import { WhatWeServe } from "@/components/restaurant/what-we-serve";
-
-const floatingHighlights = [
-  {
-    title: "Precision Prep",
-    image: "/photos/our-story-1.jpg",
-    note: "Ingredients are carefully weighed to guarantee perfect nutritional balance.",
-    accent: "Balance",
-    size: "small",
-    position: "right center",
-  },
-  {
-    title: "Expert Cuts",
-    image: "/photos/our-story-2.jpg",
-    note: "Sized and sliced with intention to deliver the ultimate texture in every bite.",
-    accent: "Texture",
-    size: "large",
-  },
-  {
-    title: "Peak Freshness",
-    image: "/photos/our-story-3.jpg",
-    note: "Preserved and stored in optimal conditions so every bowl stays crisp and bold.",
-    accent: "Quality",
-    size: "medium",
-  },
-] as const;
 
 const menuCategories = [
   {
     title: "Signature Bowls",
     note: "House bowls built for balance.",
     items: [
-      { name: "Bliss", price: "" },
-      { name: "Low Calorie", price: "" },
+      { name: "Signature Bowl", price: "" },
       { name: "Cardio Crunch", price: "" },
       { name: "Fuel up Energy", price: "" },
       { name: "Gut Guardian", price: "" },
@@ -91,136 +62,29 @@ const hours = [
   { label: "SUN - MON", value: "10:00 am - 4:00 pm (Pickup or Delivery)" },
 ] as const;
 
-const heroSlides = [
-  {
-    src: "/photos/Banner1.jpg",
-    alt: "Fresh Fuel Poke restaurant spread",
-    label: "Signature Dishes",
-    title: ["Signature", "Bowls"] as const,
-    accent: "made fresh.",
-    description:
-      "Our most-loved bowls, built to order with vibrant toppings and house sauces.",
-  },
-  {
-    src: "/photos/Banner2.jpg",
-    alt: "Fresh Fuel Poke preparation scene",
-    label: "Fresh energy",
-    title: ["Fuel your purpose"] as const,
-    accent: "Eat with intention",
-    description:
-      "Crisp veg, clean proteins, and bright sauces prepped fast so your bowl stays bold.",
-  },
-  {
-    src: "/photos/Banner3.jpg",
-    alt: "Fresh ingredients being prepared",
-    label: "Fresh prep",
-    title: ["Bright", "Ingredients"] as const,
-    accent: "real taste.",
-    description:
-      "Color, crunch, and balance from simple ingredients that still feel generous.",
-  },
-] as const;
-
-export default function Design2Page() {
+export default function ContactPage() {
   return (
     <main className="bg-white text-[#121212]">
       <SiteHeader menuCategories={menuCategories} />
 
-      <HeroCarousel
-        slides={heroSlides}
-        eyebrow="Bold & Trendy"
-        title={["Bowls", "Built"]}
-        accent="for the feed."
-        description="Freshly prepared poke bowls, vibrant toppings, and feel-good meals made for lunch runs, dinner cravings, and easy group orders."
-      />
-
-      <section className="px-8 py-16 md:px-16 md:py-20 lg:px-24 lg:py-24">
-        <Reveal delay={80}>
-          <div className="mx-auto custom-container bg-white px-0 py-0 text-[#121212] md:px-10 md:py-12 lg:rounded-lg lg:border lg:border-stone-200 lg:px-10 lg:py-12 lg:shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
-            <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
-              <div className="max-w-xl py-2 md:px-0 md:py-0 lg:pb-10">
-                <h2 className="mt-4 font-serif text-4xl leading-[0.94] tracking-[-0.03em] text-stone-950 md:text-5xl">
-                  Our Story
-                </h2>
-                <p className="mt-6 max-w-lg text-sm leading-8 tracking-[0.08em] text-stone-600 md:text-base">
-                  Fresh Fuel Poke was born from a simple idea that fast food
-                  does not have to be junk food.We saw a world of people on the
-                  go, striving to be their best but lacking access to meals that
-                  were both convenient and genuinely nourishing.We bridge that
-                  gap. We bring the vibrant, fresh fla-vour of the Pacific to
-                  the heart of the city, offering a fuel stop for modern life.
-                  We aim to be the world's leading fresh, fast cau-sual brand by
-                  making vibrant, nutrient dense faad thp most accessible,
-                  appealing, delicious and exciting choice to fuel modern,
-                  active life-styles.
-                </p>
-              </div>
-
-              <div className="hidden rounded-lg border border-stone-200 bg-[#f4f5f1] p-4 sm:p-6 lg:block">
-                <div className="relative hidden min-h-180 overflow-hidden lg:block">
-                  <div className="pointer-events-none absolute inset-x-0 top-8 text-center text-[5rem] font-black uppercase leading-none tracking-[0.32em] text-stone-900/4 lg:text-[6.5rem]">
-                    Fresh Fuel
-                  </div>
-                  <div className="pulse-halo absolute left-[6%] top-[8%] h-44 w-44 rounded-full bg-(--brand-red)/20 blur-3xl" />
-                  <div className="pulse-halo absolute bottom-[12%] right-[8%] h-52 w-52 rounded-full bg-(--lime)/18 blur-3xl" />
-
-                  {floatingHighlights.map((item, index) => (
-                    <article
-                      key={item.title}
-                      className={`absolute rounded-lg border border-stone-200 bg-white p-4 text-[#121212] shadow-[0_30px_70px_rgba(15,23,42,0.12)] transition duration-500 hover:-translate-y-2 ${
-                        index === 0
-                          ? "floating-soft left-[3%] top-[12%] w-[34%] max-w-62.5 rotate-[-5deg]"
-                          : index === 1
-                            ? "floating-medium left-1/2 top-[16%] z-10 w-[44%] max-w-90 -translate-x-1/2"
-                            : "floating-slow right-[3%] bottom-[8%] w-[35%] max-w-65 rotate-[5deg]"
-                      }`}
-                    >
-                      <div
-                        className={`relative overflow-hidden rounded-md bg-[#f5f4ef] ${
-                          item.size === "large" ? "aspect-square" : "aspect-4/5"
-                        }`}
-                      >
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 28vw"
-                          className="object-cover transition duration-500 hover:scale-105"
-                          style={{
-                            objectPosition: (item as any).position || "center",
-                          }}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <h3 className="font-serif text-2xl text-stone-950">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <p className="mt-3 text-sm leading-7 tracking-[0.06em] text-stone-500">
-                        {item.note}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="border-t border-stone-200 py-20 md:py-28">
-        <Reveal delay={80}>
-          <BowlCarousel />
-        </Reveal>
-      </section>
-
-      <section
-        id="menu-section"
-        className="what-we-serve-section"
-      >
-        <Reveal delay={80}>
-          <WhatWeServe menuCategories={menuCategories} />
-        </Reveal>
+      <section className="relative pt-48 pb-24 px-8 md:px-16 lg:px-24 overflow-hidden">
+        <Image
+          src="/photos/Banner1.jpg"
+          alt="Fresh Fuel Poke restaurant"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        <div className="relative mx-auto custom-container">
+          <Reveal delay={80}>
+            <h1 className="font-serif text-5xl md:text-7xl mb-6 text-white">Contact Us</h1>
+            <p className="text-lg text-stone-200 max-w-2xl leading-relaxed">
+              Have a question about our menu, catering, or just want to say hi? 
+              We'd love to hear from you. Reach out through any of the channels below.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       <section className="px-8 py-24 md:px-16 md:py-40 lg:px-24">

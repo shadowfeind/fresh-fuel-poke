@@ -6,7 +6,7 @@ const footerLinks = [
   { label: "Home", href: "/" },
   { label: "Dine-in & Delivery", href: "#menu-section" },
   { label: "Catering", href: "#" },
-  { label: "Contact Us", href: "#" },
+  { label: "Contact Us", href: "/contact" },
 ] as const;
 
 const socialLinks = [
@@ -30,18 +30,11 @@ const socialLinks = [
 
 const deliveryPlatforms = [
   {
-    label: "foodpanda",
-    src: "/photos/foopanda.png",
-    width: 110,
-    height: 78,
-    className: "ml-2 w-[96px] md:ml-3 md:w-[110px]",
-  },
-  {
-    label: "Keeta",
-    src: "/photos/keeta.png",
-    width: 92,
-    height: 47,
-    className: "w-[76px] md:w-[92px]",
+    label: "Delivery Platforms",
+    src: "/photos/foodpanda-and-keeta.png",
+    width: 200,
+    height: 60,
+    className: "w-[180px] md:w-[200px]",
   },
 ] as const;
 
@@ -108,7 +101,7 @@ export function SiteFooter() {
             <p className="text-[1.05rem] font-semibold text-white">
               Delivery Platforms
             </p>
-            <div className="mt-4 flex items-center justify-center gap-5 ml-4">
+            <div className="mt-4 flex items-center justify-center gap-5">
               {deliveryPlatforms.map((item) => (
                 <Image
                   key={item.label}

@@ -155,6 +155,21 @@ button {
   }
 }
 
+@keyframes dance {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0) scale(1);
+  }
+  25% {
+    transform: rotate(0.8deg) translateY(-1px) scale(1.01);
+  }
+  50% {
+    transform: rotate(-0.8deg) translateY(0) scale(1);
+  }
+  75% {
+    transform: rotate(0.4deg) translateY(-0.5px) scale(1.005);
+  }
+}
+
 .marquee-left {
   animation: marqueeLeft 24s linear infinite;
 }
@@ -276,11 +291,13 @@ button {
 
 .what-we-serve-title {
   font-family: var(--font-body);
-  font-style: italic;
+  font-style: normal;
   font-weight: 700;
   font-size: 2rem;
   color: #1a1a1a;
   margin-bottom: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .what-we-serve-grid {
@@ -290,15 +307,25 @@ button {
 }
 
 .what-we-serve-category {
-  font-family: cursive, "Apple Chancery", "Brush Script MT", serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 1.35rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.2rem;
   color: #1a1a1a;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: 2px;
+  display: block;
+  transition: all 0.3s ease;
+  cursor: default;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.what-we-serve-category:hover {
+  animation: dance 0.8s ease-in-out infinite;
+  color: #1a1a1a;
 }
 
 .what-we-serve-list {
@@ -312,6 +339,13 @@ button {
   line-height: 1.75;
   color: #2a2a2a;
   font-weight: 600;
+  display: block;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.what-we-serve-item:hover {
+  animation: dance 0.8s ease-in-out infinite;
+  color: #000;
 }
 
 /* Responsive adjustments */

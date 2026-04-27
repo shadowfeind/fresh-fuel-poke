@@ -5,6 +5,8 @@ import { startTransition, useEffect, useEffectEvent, useState } from "react";
 import { RestaurantLogo } from "./common";
 import { DishModal, type DishDetails } from "./dish-modal";
 
+import { bowls } from "@/components/design5/bowl-carousel";
+
 type MenuCategory = {
   readonly title: string;
   readonly note: string;
@@ -24,11 +26,22 @@ export function SiteHeader({
   const [selectedItem, setSelectedItem] = useState<DishDetails | null>(null);
 
   const handleItemClick = (item: { name: string; price: string }) => {
+    // Check if this item exists in our signature bowls
+    const signatureBowl = bowls.find(
+      (b) => b.name.toLowerCase() === item.name.toLowerCase(),
+    );
+
+    if (signatureBowl) {
+      setSelectedItem(signatureBowl as any);
+      return;
+    }
+
     setSelectedItem({
       name: item.name,
       image: "/photos/Cardio%20Crunch.png",
-      description: "A freshly prepared dish made to order with our finest ingredients and signature bold flavors.",
-      subtitle: "Fresh & Healthy",
+      description:
+        "A freshly prepared dish made to order with our finest ingredients and signature bold flavors.",
+      ingredients: "Hand-picked fresh ingredients prepared daily.",
     });
   };
 
@@ -203,6 +216,13 @@ export function SiteHeader({
               className="rounded-md border border-stone-300 bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-[0.28em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
             >
               Full Menu
+            </Link>
+            <Link
+              href="/contact"
+              onClick={closeDrawer}
+              className="rounded-md border border-stone-300 bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-[0.28em] text-stone-950 transition hover:border-stone-950 hover:bg-stone-950 hover:text-white"
+            >
+              Contact
             </Link>
             <button
               type="button"

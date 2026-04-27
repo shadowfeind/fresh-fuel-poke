@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 export type DishNutrition = {
-  calories: number;
-  protein: number;
-  fats: number;
-  carbs: number;
+  calories: number | string;
+  protein: number | string;
+  fats: number | string;
+  carbs: number | string;
   vitC: string;
 };
 
@@ -50,7 +50,7 @@ export function DishModal({ isOpen, onClose, bowl }: DishModalProps) {
   const modalContent = (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-sm">
       <div 
-        className="bg-white border border-stone-100 shadow-2xl w-full max-w-5xl max-h-[95vh] relative flex flex-col rounded-sm overflow-hidden"
+        className="bg-white border border-stone-100 shadow-2xl w-full max-w-6xl max-h-[95vh] relative flex flex-col rounded-sm overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -66,7 +66,7 @@ export function DishModal({ isOpen, onClose, bowl }: DishModalProps) {
         <div className="flex flex-col md:flex-row w-full overflow-y-auto p-6 md:p-14">
           {/* Left Side: Image and Subtitle */}
           <div className="flex-1 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-stone-300 pb-8 md:pb-0 md:pr-14 shrink-0">
-            <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 mb-6 md:mb-8">
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-144 md:h-144 mb-6 md:mb-8">
               <Image
                 src={bowl.image}
                 alt={bowl.name}
@@ -74,19 +74,18 @@ export function DishModal({ isOpen, onClose, bowl }: DishModalProps) {
                 className="object-contain"
               />
             </div>
-            <p className="text-center text-[14px] md:text-[15px] font-medium text-stone-400 max-w-xs leading-snug">
-              {bowl.subtitle || "Colesterol Control, Clean Energy and Circulation Support"}
-            </p>
           </div>
 
           {/* Right Side: Content */}
           <div className="flex-1 pt-6 md:pt-0 md:pl-10 flex flex-col justify-center">
           <h2 className="text-[32px] font-medium text-stone-800 mb-3 font-sans leading-tight">{bowl.name}</h2>
-          <p className="text-stone-400 mb-3 leading-snug text-[17px]">
-            {bowl.description}
-          </p>
+          {bowl.description && (
+            <p className="text-stone-400 mb-3 leading-snug text-[17px] font-medium italic">
+              {bowl.description}
+            </p>
+          )}
           <p className="text-stone-400 mb-5 leading-snug text-[17px]">
-            {bowl.ingredients || "Quinoa, Salmon, Broccoli, Avocado, Lemon, Dry Fruits Flax Seed, Olive Oil."}
+            {bowl.ingredients}
           </p>
 
           <div className="mb-6 md:mb-8">
@@ -94,11 +93,11 @@ export function DishModal({ isOpen, onClose, bowl }: DishModalProps) {
               Nutrients Facts
             </h3>
             <div className="space-y-0.5 text-[14px] md:text-[15px] font-medium text-stone-400 tracking-wide uppercase">
-              <p>CALORIES {bowl.nutrition?.calories || 580}</p>
-              <p>PROTEIN {bowl.nutrition?.protein || 26}</p>
-              <p>FATS {bowl.nutrition?.fats || 23}</p>
-              <p>CARBS {bowl.nutrition?.carbs || 23}</p>
-              <p>VIT C {bowl.nutrition?.vitC || "234 mg"}</p>
+              <p>CALORIES {bowl.nutrition?.calories || "--"}</p>
+              <p>PROTEIN {bowl.nutrition?.protein || "--"}</p>
+              <p>FATS {bowl.nutrition?.fats || "--"}</p>
+              <p>CARBS {bowl.nutrition?.carbs || "--"}</p>
+              <p>VIT C {bowl.nutrition?.vitC || "--"}</p>
             </div>
           </div>
 
