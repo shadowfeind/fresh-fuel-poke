@@ -324,7 +324,6 @@ button {
 }
 
 .what-we-serve-category:hover {
-  animation: dance 0.8s ease-in-out infinite;
   color: #1a1a1a;
 }
 
@@ -340,11 +339,12 @@ button {
   color: #2a2a2a;
   font-weight: 600;
   display: block;
+  transform-origin: left;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .what-we-serve-item:hover {
-  animation: dance 0.8s ease-in-out infinite;
+  transform: scale(1.03);
   color: #000;
 }
 

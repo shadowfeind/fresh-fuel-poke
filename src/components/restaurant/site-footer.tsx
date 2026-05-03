@@ -30,11 +30,11 @@ const socialLinks = [
 
 const deliveryPlatforms = [
   {
-    label: "Delivery Platforms",
-    src: "/photos/foodpanda-and-keeta.png",
-    width: 200,
-    height: 60,
-    className: "w-[180px] md:w-[200px]",
+    label: "Delivery Platform",
+    src: "/photos/foodpanda.png",
+    width: 140,
+    height: 42,
+    className: "w-[126px] md:w-[140px]",
   },
 ] as const;
 
@@ -99,7 +99,7 @@ export function SiteFooter() {
 
           <div className="text-center lg:justify-self-end lg:pt-2">
             <p className="text-[1.05rem] font-semibold text-white">
-              Delivery Platforms
+              Delivery Platform
             </p>
             <div className="mt-4 flex items-center justify-center gap-5">
               {deliveryPlatforms.map((item) => (

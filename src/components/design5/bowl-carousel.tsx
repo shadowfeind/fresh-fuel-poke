@@ -18,6 +18,7 @@ export type Bowl = {
   };
   price: string;
   tags: string[];
+  isSignature?: boolean;
 };
 
 export const bowls: Bowl[] = [
@@ -33,11 +34,12 @@ export const bowls: Bowl[] = [
       carbs: "46.72",
       vitC: "56.46 MG"
     },
-    price: "",
+    price: "$98",
     tags: ["Best Seller", "Protein Forward"],
+    isSignature: true,
   },
   {
-    name: "Low Calorie",
+    name: "Low Calories",
     image: "/photos/Low%20Calories.png",
     description: "Big Portion, Low Calories, Satiety, Metabolism Booster",
     ingredients: "Spinach, Salmon, Purple Cabbage, Cucumber, Ginger, Sesame Oil, Sesame Seed",
@@ -48,8 +50,9 @@ export const bowls: Bowl[] = [
       carbs: "13.64",
       vitC: "73.25 mg"
     },
-    price: "",
+    price: "$98",
     tags: ["Light", "Low Calorie"],
+    isSignature: true,
   },
   {
     name: "Cardio Crunch",
@@ -63,8 +66,9 @@ export const bowls: Bowl[] = [
       carbs: "35.21",
       vitC: "51.67 MG"
     },
-    price: "",
+    price: "$108",
     tags: ["Crunchy", "Texture Rich"],
+    isSignature: true,
   },
   {
     name: "Fuel Up Energy",
@@ -78,8 +82,9 @@ export const bowls: Bowl[] = [
       carbs: "44.07",
       vitC: "58.66 mg"
     },
-    price: "",
+    price: "$108",
     tags: ["Power Bowl", "Recovery"],
+    isSignature: true,
   },
   {
     name: "Gut Guardian",
@@ -93,8 +98,9 @@ export const bowls: Bowl[] = [
       carbs: "23.53",
       vitC: "48.21 mg"
     },
-    price: "",
+    price: "$98",
     tags: ["Probiotic", "Gut Health"],
+    isSignature: true,
   },
   {
     name: "Neuro Fuel",
@@ -108,8 +114,9 @@ export const bowls: Bowl[] = [
       carbs: "23.16",
       vitC: "70.17 mg"
     },
-    price: "",
+    price: "$98",
     tags: ["Brain Food", "Omega Rich"],
+    isSignature: true,
   },
   {
     name: "Muscle Recovery",
@@ -123,8 +130,9 @@ export const bowls: Bowl[] = [
       carbs: "58.73",
       vitC: "52.62"
     },
-    price: "",
+    price: "$98",
     tags: ["High Protein", "Post-Workout"],
+    isSignature: true,
   },
   {
     name: "Immunity Booster",
@@ -138,8 +146,9 @@ export const bowls: Bowl[] = [
       carbs: "50.87",
       vitC: "102.48 MG"
     },
-    price: "",
+    price: "$98",
     tags: ["Immunity", "Superfoods"],
+    isSignature: true,
   },
 ];
 const loopedBowls = [...bowls, ...bowls, ...bowls];

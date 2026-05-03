@@ -16,6 +16,22 @@ type MenuCategory = {
   }[];
 };
 
+const addOnImages: Record<string, string> = {
+  "Salmon Fillet": "/photos/Add-On/Salmon%20Fillet.png",
+  "Chicken Breast": "/photos/Add-On/Chicken%20Breast.png",
+  "Tofu": "/photos/Add-On/Tofu.png",
+  "Kimchi": "/photos/Add-On/Kimchi.png",
+  "Avocado": "/photos/Add-On/Avacado.png",
+  "Apple & Pineapple Mix": "/photos/Add-On/Apple%20%26%20Pineapple%20Mix.png",
+};
+
+const sauceImages: Record<string, string> = {
+  "Ginger Miso": "/photos/Sauce/Giner%20Miso.png",
+  "Honey Lime": "/photos/Sauce/Honey%20Lime.png",
+  "Ponzu Tajin": "/photos/Sauce/Ponzu%20Tajin.png",
+  "Turmeric Coco": "/photos/Sauce/Turmeric%20CCoco.png",
+};
+
 export function SiteHeader({
   menuCategories,
 }: {
@@ -25,23 +41,32 @@ export function SiteHeader({
   const [activeDrawer, setActiveDrawer] = useState<"menu" | null>(null);
   const [selectedItem, setSelectedItem] = useState<DishDetails | null>(null);
 
-  const handleItemClick = (item: { name: string; price: string }) => {
+  const handleItemClick = (item: { name: string; price: string }, categoryTitle: string) => {
     // Check if this item exists in our signature bowls
     const signatureBowl = bowls.find(
       (b) => b.name.toLowerCase() === item.name.toLowerCase(),
     );
 
     if (signatureBowl) {
-      setSelectedItem(signatureBowl as any);
+      setSelectedItem({ ...signatureBowl as any, price: item.price || signatureBowl.price, isSignature: true });
       return;
+    }
+
+    let image = "/photos/Cardio%20Crunch.png";
+    if (categoryTitle === "Add On Side Dish" && addOnImages[item.name]) {
+      image = addOnImages[item.name];
+    } else if (categoryTitle === "Sauce Options" && sauceImages[item.name]) {
+      image = sauceImages[item.name];
     }
 
     setSelectedItem({
       name: item.name,
-      image: "/photos/Cardio%20Crunch.png",
-      description:
-        "A freshly prepared dish made to order with our finest ingredients and signature bold flavors.",
-      ingredients: "Hand-picked fresh ingredients prepared daily.",
+      image,
+      description: "",
+      ingredients: "",
+      price: item.price,
+      isSignature: false,
+      category: categoryTitle === "Sauce Options" ? "sauce" : undefined,
     });
   };
 
@@ -194,13 +219,10 @@ export function SiteHeader({
                     <div
                       key={item.name}
                       className="flex items-baseline justify-between border-b border-stone-200/80 pb-3 cursor-pointer group"
-                      onClick={() => handleItemClick(item)}
+                      onClick={() => handleItemClick(item, category.title)}
                     >
                       <span className="text-sm tracking-[0.08em] text-stone-700 md:text-base group-hover:text-stone-950 transition-colors">
                         {item.name}
-                      </span>
-                      <span className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 group-hover:text-stone-700 transition-colors">
-                        {item.price}
                       </span>
                     </div>
                   ))}
